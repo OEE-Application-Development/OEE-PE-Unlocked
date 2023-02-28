@@ -1,0 +1,28 @@
+minimum_cumulusci_version: '3.73.0'
+project:
+    name: OEE-PE-Unlocked
+    package:
+        name: OEE-PE-Unlocked
+        namespace: csuoee
+        api_version: '57.0'
+    dependencies:
+        - github: 'https://github.com/OEE-Application-Development/OEE-EDA-Base-Unlocked'
+    git:
+        default_branch: 'main'
+    source_format: sfdx
+
+tasks:
+    robot:
+        options:
+            suites: robot/OEE-PE-Unlocked/tests
+            options:
+                outputdir: robot/OEE-PE-Unlocked/results
+
+    robot_testdoc:
+        options:
+            path: robot/OEE-PE-Unlocked/tests
+            output: robot/OEE-PE-Unlocked/doc/OEE-PE-Unlocked_tests.html
+
+    run_tests:
+        options:
+            required_org_code_coverage_percent: 75
