@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Run_Student_Enrollment_Apex</name>
+        <label>Run Student Enrollment Apex</label>
+        <locationX>176</locationX>
+        <locationY>194</locationY>
+        <actionName>HandleEnrollments</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>offeringReference</name>
+            <value>
+                <elementReference>$Record.csuoee__Section_Reference__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>userId</name>
+            <value>
+                <elementReference>$Record.csuoee__User_Id__c</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <environments>Default</environments>
+    <interviewLabel>Process PE Student Enrollment {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Process PE Student Enrollment</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Run_Student_Enrollment_Apex</targetReference>
+        </connector>
+        <object>csuoee__Confirmation_Publish__e</object>
+        <triggerType>PlatformEvent</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

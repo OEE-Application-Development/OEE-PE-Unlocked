@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CSU_Online_Account_Email__c</fullName>
+    <description>8/8/2022 - Created a field for Kyle W. to use when syncing over emails for OPUS/NC account sign ups.
+
+This will be the value obtained from OPUS or the CSUO website.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>8/8/2022 - Created a field for Kyle W. to use when syncing over emails for OPUS/NC account sign ups.
+
+This will be the value obtained from OPUS or the CSUO website.</inlineHelpText>
+    <label>CSU Online Account Email</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Email</type>
+    <unique>false</unique>
+</CustomField>

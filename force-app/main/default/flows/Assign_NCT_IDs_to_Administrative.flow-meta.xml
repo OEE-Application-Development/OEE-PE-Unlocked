@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <decisions>
+        <name>Is_Adminstrative_Account_RecordType</name>
+        <label>Is Adminstrative Account RecordType?</label>
+        <locationX>182</locationX>
+        <locationY>311</locationY>
+        <defaultConnectorLabel>Is Other RecordType</defaultConnectorLabel>
+        <rules>
+            <name>Is_Administrative</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Administrative</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_School_Code_to_Noncredit_ID</targetReference>
+            </connector>
+            <label>Is Administrative</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Assign NCT IDs to Administrative {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Assign NCT IDs to Administrative</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_School_Code_to_Noncredit_ID</name>
+        <label>Set School Code to Noncredit ID</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>hed__School_Code__c</field>
+            <value>
+                <elementReference>$Record.hed__Primary_Contact__r.Noncredit_ID__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Adminstrative_Account_RecordType</targetReference>
+        </connector>
+        <object>Account</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
