@@ -1,6 +1,6 @@
 {
-  "orgName": "OEE-PE-Unlocked - Dev Org",
-  "edition": "Developer",
+  "orgName": "OEE-ProfessionalEducation - Dev Org",
+  "sourceOrg": "00D6g000002hydVEAQ",
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
@@ -19,6 +19,11 @@
     },
     "languageSettings": {
       "enableTranslationWorkbench": true
+    }
+  },
+  "objectSettings": {
+    "account": {
+      "defaultRecordType": "Administrative"
     }
   }
 }
