@@ -11,7 +11,7 @@
             <name>Noncredit_ID_Updated</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Noncredit_ID__c</leftValueReference>
+                <leftValueReference>$Record.csuoee__Noncredit_ID__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <elementReference>$Record__Prior.Noncredit_ID__c</elementReference>

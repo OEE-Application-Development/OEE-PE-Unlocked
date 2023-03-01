@@ -11,13 +11,13 @@
         <inputParameters>
             <name>offeringReference</name>
             <value>
-                <elementReference>$Record.csuoee__Section_Reference__c</elementReference>
+                <elementReference>$Record.Section_Reference__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>userId</name>
             <value>
-                <elementReference>$Record.csuoee__User_Id__c</elementReference>
+                <elementReference>$Record.User_Id__c</elementReference>
             </value>
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -51,7 +51,7 @@
         <connector>
             <targetReference>Run_Student_Enrollment_Apex</targetReference>
         </connector>
-        <object>csuoee__Confirmation_Publish__e</object>
+        <object>Confirmation_Publish__e</object>
         <triggerType>PlatformEvent</triggerType>
     </start>
     <status>Draft</status>

@@ -42,7 +42,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Get_Course_Offering.csuoee__Subledger__c</assignToReference>
+            <assignToReference>Get_Course_Offering.Subledger__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>$Record.Subledger__c</elementReference>
@@ -56,7 +56,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Get_Course_Offering.csuoee__Requires_Canvas__c</assignToReference>
+            <assignToReference>Get_Course_Offering.Requires_Canvas__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>$Record.Requires_Canvas__c</elementReference>
@@ -139,21 +139,21 @@
             <name>Online</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Facility__c</leftValueReference>
+                <leftValueReference>$Record.csuoee__Facility__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Online</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.Facility__c</leftValueReference>
+                <leftValueReference>$Record.csuoee__Facility__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <elementReference>CanvasFacilityName</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.Facility__c</leftValueReference>
+                <leftValueReference>$Record.csuoee__Facility__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -203,7 +203,7 @@
             <name>CSU_ID_Exists</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Faculty_ID__c</leftValueReference>
+                <leftValueReference>$Record.csuoee__Faculty_ID__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -241,7 +241,7 @@
     <formulas>
         <name>ConcatenateCourseOfferingID</name>
         <dataType>String</dataType>
-        <expression>{!$Record.Course_Code__c}&amp;&apos; &apos;&amp;{!$Record.Section_Number__c}</expression>
+        <expression>{!$Record.csuoee__Course_Code__c}&amp;&apos; &apos;&amp;{!$Record.csuoee__Section_Number__c}</expression>
     </formulas>
     <interviewLabel>Process PE Section Publish {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Process PE Section Publish</label>
@@ -308,13 +308,13 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>csuoee__Requires_Canvas__c</field>
+            <field>Requires_Canvas__c</field>
             <value>
                 <elementReference>$Record.Requires_Canvas__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>csuoee__Subledger__c</field>
+            <field>Subledger__c</field>
             <value>
                 <elementReference>$Record.Subledger__c</elementReference>
             </value>
@@ -492,7 +492,7 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>csuoee__Course_Code__c</field>
+            <field>Course_Code__c</field>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>$Record.Course_Code__c</elementReference>
@@ -621,7 +621,7 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>csuoee__CSU_ID__c</field>
+            <field>CSU_ID__c</field>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>$Record.Faculty_ID__c</elementReference>

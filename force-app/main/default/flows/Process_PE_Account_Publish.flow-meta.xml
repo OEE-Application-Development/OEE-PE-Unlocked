@@ -55,7 +55,7 @@
     <assignments>
         <name>Update_Contact_Fields</name>
         <label>Update Contact Fields</label>
-        <locationX>2250</locationX>
+        <locationX>1590</locationX>
         <locationY>1370</locationY>
         <assignmentItems>
             <assignToReference>ContactToUpdate.Birthdate</assignToReference>
@@ -120,7 +120,7 @@
     <decisions>
         <name>Contact_Email_Exists</name>
         <label>Contact Email Exists?</label>
-        <locationX>1898</locationX>
+        <locationX>1370</locationX>
         <locationY>674</locationY>
         <defaultConnector>
             <targetReference>Update_Contact_Fields</targetReference>
@@ -170,7 +170,7 @@
     <decisions>
         <name>Is_this_a_Company_Account</name>
         <label>Is this a Company Account?</label>
-        <locationX>1282</locationX>
+        <locationX>952</locationX>
         <locationY>194</locationY>
         <defaultConnector>
             <targetReference>Get_Contact_By_Noncredit_Id</targetReference>
@@ -180,7 +180,7 @@
             <name>Company</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.IsCompany__c</leftValueReference>
+                <leftValueReference>$Record.csuoee__IsCompany__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -195,7 +195,7 @@
     <decisions>
         <name>Noncredit_ID_Exists</name>
         <label>Noncredit ID Exists?</label>
-        <locationX>2250</locationX>
+        <locationX>1590</locationX>
         <locationY>434</locationY>
         <defaultConnector>
             <targetReference>Update_Contact_Fields</targetReference>
@@ -221,47 +221,47 @@
     <formulas>
         <name>CoalesceAddress1</name>
         <dataType>String</dataType>
-        <expression>IF(ISNULL({!$Record.Address1__c}), {!ContactToUpdate.MailingAddress}, {!$Record.Address1__c})</expression>
+        <expression>IF(ISNULL({!$Record.csuoee__Address1__c}), {!ContactToUpdate.MailingAddress}, {!$Record.csuoee__Address1__c})</expression>
     </formulas>
     <formulas>
         <name>CoalesceBirthday</name>
         <dataType>Date</dataType>
-        <expression>IF(ISNULL({!$Record.Birthday__c}), {!ContactToUpdate.Birthdate}, {!$Record.Birthday__c})</expression>
+        <expression>IF(ISNULL({!$Record.csuoee__Birthday__c}), {!ContactToUpdate.Birthdate}, {!$Record.csuoee__Birthday__c})</expression>
     </formulas>
     <formulas>
         <name>CoalesceCity</name>
         <dataType>String</dataType>
-        <expression>IF(ISNULL({!$Record.City__c}), {!ContactToUpdate.MailingCity}, {!$Record.City__c})</expression>
+        <expression>IF(ISNULL({!$Record.csuoee__City__c}), {!ContactToUpdate.MailingCity}, {!$Record.csuoee__City__c})</expression>
     </formulas>
     <formulas>
         <name>CoalesceCountry</name>
         <dataType>String</dataType>
-        <expression>IF(ISNULL({!$Record.Country__c}), {!ContactToUpdate.MailingCountry}, {!$Record.Country__c})</expression>
+        <expression>IF(ISNULL({!$Record.csuoee__Country__c}), {!ContactToUpdate.MailingCountry}, {!$Record.csuoee__Country__c})</expression>
     </formulas>
     <formulas>
         <name>CoalesceEmail</name>
         <dataType>String</dataType>
-        <expression>IF(ISNULL({!$Record.Email__c}), {!ContactToUpdate.CSU_Online_Account_Email__c}, {!$Record.Email__c})</expression>
+        <expression>IF(ISNULL({!$Record.csuoee__Email__c}), {!ContactToUpdate.csuoee__CSU_Online_Account_Email__c}, {!$Record.csuoee__Email__c})</expression>
     </formulas>
     <formulas>
         <name>CoalescePhone1</name>
         <dataType>String</dataType>
-        <expression>IF(ISNULL({!$Record.Phone1__c}), {!ContactToUpdate.HomePhone}, {!$Record.Phone1__c})</expression>
+        <expression>IF(ISNULL({!$Record.csuoee__Phone1__c}), {!ContactToUpdate.HomePhone}, {!$Record.csuoee__Phone1__c})</expression>
     </formulas>
     <formulas>
         <name>CoalesceState</name>
         <dataType>String</dataType>
-        <expression>IF(ISNULL({!$Record.State__c}), {!ContactToUpdate.MailingState}, {!$Record.State__c})</expression>
+        <expression>IF(ISNULL({!$Record.csuoee__State__c}), {!ContactToUpdate.MailingState}, {!$Record.csuoee__State__c})</expression>
     </formulas>
     <formulas>
         <name>CoalesceZip</name>
         <dataType>String</dataType>
-        <expression>IF(ISNULL({!$Record.Zip__c}), {!ContactToUpdate.MailingPostalCode}, {!$Record.Zip__c})</expression>
+        <expression>IF(ISNULL({!$Record.csuoee__Zip__c}), {!ContactToUpdate.MailingPostalCode}, {!$Record.csuoee__Zip__c})</expression>
     </formulas>
     <formulas>
         <name>EvaluatePhonePreference</name>
         <dataType>String</dataType>
-        <expression>IF(ISBLANK({!$Record.Phone2__c}),IF(ISBLANK({!$Record.Phone1__c}),&quot;&quot;,&quot;Home&quot;),&quot;Mobile&quot;)</expression>
+        <expression>IF(ISBLANK({!$Record.csuoee__Phone2__c}),IF(ISBLANK({!$Record.csuoee__Phone1__c}),&quot;&quot;,&quot;Home&quot;),&quot;Mobile&quot;)</expression>
     </formulas>
     <interviewLabel>Process PE Account Publish {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Process PE Account Publish</label>
@@ -404,7 +404,7 @@
     <recordCreates>
         <name>Create_Contact_Create_Error</name>
         <label>Create Contact Create Error</label>
-        <locationX>1898</locationX>
+        <locationX>1370</locationX>
         <locationY>914</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
@@ -436,7 +436,7 @@
     <recordCreates>
         <name>Create_Contact_Record</name>
         <label>Create Contact Record</label>
-        <locationX>1634</locationX>
+        <locationX>1106</locationX>
         <locationY>794</locationY>
         <faultConnector>
             <targetReference>Create_Contact_Create_Error</targetReference>
@@ -531,7 +531,7 @@
     <recordCreates>
         <name>Create_Contact_Update_Error</name>
         <label>Create Contact Update Error</label>
-        <locationX>2778</locationX>
+        <locationX>1986</locationX>
         <locationY>1610</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
@@ -560,134 +560,6 @@
         <object>hed__Error__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
-    <recordCreates>
-        <name>Create_Lookup_Account_By_Email_Error</name>
-        <label>Create Lookup Account By Email Error</label>
-        <locationX>2338</locationX>
-        <locationY>674</locationY>
-        <inputAssignments>
-            <field>hed__Error_Type__c</field>
-            <value>
-                <stringValue>Object Lookup</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>hed__Full_Message__c</field>
-            <value>
-                <stringValue>Failed to lookup Contact.</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>hed__Object_Type__c</field>
-            <value>
-                <stringValue>Contact</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>hed__Stack_Trace__c</field>
-            <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <object>hed__Error__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordCreates>
-    <recordCreates>
-        <name>Create_Lookup_Account_By_NC_Id_Error</name>
-        <label>Create Lookup Account By NC Id Error</label>
-        <locationX>3042</locationX>
-        <locationY>434</locationY>
-        <inputAssignments>
-            <field>hed__Error_Type__c</field>
-            <value>
-                <stringValue>Object Lookup</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>hed__Full_Message__c</field>
-            <value>
-                <stringValue>Failed to lookup Contact.</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>hed__Object_Type__c</field>
-            <value>
-                <stringValue>Contact</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>hed__Stack_Trace__c</field>
-            <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <object>hed__Error__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordCreates>
-    <recordCreates>
-        <name>Create_Lookup_Business_Account_Error</name>
-        <label>Create Lookup Business Account Error</label>
-        <locationX>1370</locationX>
-        <locationY>434</locationY>
-        <inputAssignments>
-            <field>hed__Error_Type__c</field>
-            <value>
-                <stringValue>Object Lookup</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>hed__Full_Message__c</field>
-            <value>
-                <stringValue>Failed to lookup Account.</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>hed__Object_Type__c</field>
-            <value>
-                <stringValue>Account</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>hed__Stack_Trace__c</field>
-            <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <object>hed__Error__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordCreates>
-    <recordCreates>
-        <name>Create_Lookup_Business_RecordType_Error</name>
-        <label>Create Lookup Business RecordType Error</label>
-        <locationX>1106</locationX>
-        <locationY>674</locationY>
-        <inputAssignments>
-            <field>hed__Error_Type__c</field>
-            <value>
-                <stringValue>Object Lookup</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>hed__Full_Message__c</field>
-            <value>
-                <stringValue>Failed to lookup Business RecordType.</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>hed__Object_Type__c</field>
-            <value>
-                <stringValue>RecordType</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>hed__Stack_Trace__c</field>
-            <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <object>hed__Error__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordCreates>
     <recordLookups>
         <name>Get_Business_Organization_RecordTypeId</name>
         <label>Get Business_Organization RecordTypeId</label>
@@ -697,9 +569,6 @@
         <connector>
             <targetReference>Create_Business_Account</targetReference>
         </connector>
-        <faultConnector>
-            <targetReference>Create_Lookup_Business_RecordType_Error</targetReference>
-        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>SobjectType</field>
@@ -722,15 +591,12 @@
     <recordLookups>
         <name>Get_Contact_By_Email</name>
         <label>Get Contact By Email</label>
-        <locationX>1898</locationX>
+        <locationX>1370</locationX>
         <locationY>554</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Contact_Email_Exists</targetReference>
         </connector>
-        <faultConnector>
-            <targetReference>Create_Lookup_Account_By_Email_Error</targetReference>
-        </faultConnector>
         <filterLogic>or</filterLogic>
         <filters>
             <field>Email</field>
@@ -774,15 +640,12 @@
     <recordLookups>
         <name>Get_Contact_By_Noncredit_Id</name>
         <label>Get Contact By Noncredit Id</label>
-        <locationX>2250</locationX>
+        <locationX>1590</locationX>
         <locationY>314</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Noncredit_ID_Exists</targetReference>
         </connector>
-        <faultConnector>
-            <targetReference>Create_Lookup_Account_By_NC_Id_Error</targetReference>
-        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Noncredit_ID__c</field>
@@ -804,9 +667,6 @@
         <connector>
             <targetReference>Does_Company_Already_Exist</targetReference>
         </connector>
-        <faultConnector>
-            <targetReference>Create_Lookup_Business_Account_Error</targetReference>
-        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>hed__School_Code__c</field>
@@ -822,7 +682,7 @@
     <recordUpdates>
         <name>Run_Contact_Update</name>
         <label>Run Contact Update</label>
-        <locationX>2250</locationX>
+        <locationX>1590</locationX>
         <locationY>1490</locationY>
         <faultConnector>
             <targetReference>Create_Contact_Update_Error</targetReference>
@@ -840,7 +700,7 @@
         <inputReference>Lookup_Business_Account</inputReference>
     </recordUpdates>
     <start>
-        <locationX>1156</locationX>
+        <locationX>826</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Is_this_a_Company_Account</targetReference>
