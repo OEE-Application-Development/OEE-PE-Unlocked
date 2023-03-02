@@ -325,7 +325,7 @@
         <inputAssignments>
             <field>RecordTypeId</field>
             <value>
-                <stringValue>RecordTypeId</stringValue>
+                <elementReference>Get_Business_Organization_RecordTypeId.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -586,6 +586,7 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>RecordType</object>
+        <queriedFields>Id</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>

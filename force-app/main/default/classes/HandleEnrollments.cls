@@ -12,7 +12,7 @@ global with sharing class HandleEnrollments {
     }
 
     private static hed__Course_Enrollment__c handleEnrollment(/*RecordType enrollmentType,*/ String noncreditId, String reference) {
-        Contact contact = [select Id from Contact where Noncredit_ID__c = :noncreditId LIMIT 1];
+        Contact contact = [select Id from Contact where csuoee__Noncredit_ID__c = :noncreditId LIMIT 1];
         if(contact == null) return null;
 
         hed__Course_Offering__c offering = null;
