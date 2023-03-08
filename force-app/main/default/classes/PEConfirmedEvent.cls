@@ -6,7 +6,7 @@ global with sharing class PEConfirmedEvent {
             events.add(ConfirmedEvent(request.userId, request.offeringReference));
         }
 
-        return new List<AzureEventIntegration.AzureResponse>{AzureEventIntegration.sendEvents(events, true)};
+        return new List<AzureEventIntegration.AzureResponse>{AzureEventIntegration.sendEvents(events, false)};
     }
 
     private static AzureEventIntegration.AzureEvent ConfirmedEvent(String studentId, String sectionReference) {
