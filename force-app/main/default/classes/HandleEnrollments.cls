@@ -3,7 +3,11 @@ global with sharing class HandleEnrollments {
     global static List<hed__Course_Enrollment__c> handleStudentEnrollment(List<EnrollmentRequest> requests) {
         List<hed__Course_Enrollment__c> returnList = new List<hed__Course_Enrollment__c>();
         for(EnrollmentRequest request : requests) {
-            returnList.add(handleEnrollment(request.userId, request.offeringReference, request.isDrop));
+            try {
+                returnList.add(handleEnrollment(request.userId, request.offeringReference, request.isDrop));
+            } catch(Exception e) {
+                returnList.add(null);
+            }
         }
         return returnList;
     }

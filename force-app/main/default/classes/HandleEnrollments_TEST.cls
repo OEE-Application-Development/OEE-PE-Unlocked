@@ -12,7 +12,6 @@ private class HandleEnrollments_TEST {
         
         hed__Course_Enrollment__c enrollment = HandleEnrollments.handleStudentEnrollment(requests)[0];
         System.assert(enrollment == null);
-        Id generatedId = enrollment.Id;
 
         csuoee__Confirmation_Publish__e event = new csuoee__Confirmation_Publish__e(csuoee__User_Id__c = TEST_USER_ID, csuoee__Section_Reference__c = TEST_SECTION_REFERENCE);
 
