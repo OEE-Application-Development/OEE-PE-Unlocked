@@ -7,6 +7,7 @@ project:
         api_version: '57.0'
     dependencies:
         - github: 'https://github.com/OEE-Application-Development/OEE-EDA-Base-Unlocked'
+          tag: beta/0.7.0.7
         - namespace: lms_hed
           version: 1.7
     git:

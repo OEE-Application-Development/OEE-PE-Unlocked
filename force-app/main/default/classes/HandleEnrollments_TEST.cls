@@ -5,6 +5,15 @@ private class HandleEnrollments_TEST {
     private static final String TEST_SECTION_REFERENCE = 'test-reference';
     @IsTest
     private static void handleStudentEnrollment() {
+
+        List<HandleEnrollments.EnrollmentRequest> requests = new List<HandleEnrollments.EnrollmentRequest>();
+        requests.add(new HandleEnrollments.EnrollmentRequest(TEST_USER_ID, TEST_SECTION_REFERENCE, false));
+        requests.add(new HandleEnrollments.EnrollmentRequest(TEST_USER_ID, TEST_SECTION_REFERENCE, true));
+        
+        hed__Course_Enrollment__c enrollment = HandleEnrollments.handleStudentEnrollment(requests)[0];
+        System.assert(enrollment == null);
+        Id generatedId = enrollment.Id;
+
         csuoee__Confirmation_Publish__e event = new csuoee__Confirmation_Publish__e(csuoee__User_Id__c = TEST_USER_ID, csuoee__Section_Reference__c = TEST_SECTION_REFERENCE);
 
         Account fakeDept = new Account(Name = 'Fake Dept');
@@ -21,11 +30,8 @@ private class HandleEnrollments_TEST {
 
         Contact fakeContact = new Contact(AccountId = fakeDept.Id , FirstName = 'Fake', LastName = 'Contact', Noncredit_ID__c = TEST_USER_ID);
         insert fakeContact;
-
-        List<HandleEnrollments.EnrollmentRequest> requests = new List<HandleEnrollments.EnrollmentRequest>();
-        requests.add(new HandleEnrollments.EnrollmentRequest(TEST_USER_ID, TEST_SECTION_REFERENCE));
         
-        hed__Course_Enrollment__c enrollment = HandleEnrollments.handleStudentEnrollment(requests)[0];
+        enrollment = HandleEnrollments.handleStudentEnrollment(requests)[0];
         System.assert(enrollment != null);
         Id generatedId = enrollment.Id;
 
