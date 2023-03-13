@@ -21,4 +21,14 @@ private class PEEvent_TEST {
         System.assert(responses.get(0).success);
     }
 
+    @IsTest
+    private static void cancelRegistration() {
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, BaseTestUtil.getEventCalloutMock());
+        List<AzureEventIntegration.AzureResponse> responses = PERegistrationCancelEvent.cancelRegistration(new List<PERegistrationCancelEvent.PERegistrationCancelRequest>{new PERegistrationCancelEvent.PERegistrationCancelRequest('regId')});
+        Test.stopTest();
+
+        System.assert(responses.get(0).success);
+    }
+
 }
