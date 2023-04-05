@@ -14,7 +14,7 @@
           "package": "04tDn000000zGhHIAU"
         },
         {
-          "package": "04t5b000002BQdcAAG"
+          "package": "04t5b000002BQgbAAG"
         }
       ]
     }
@@ -35,7 +35,8 @@
     "OEE-PE-Unlocked@0.5.0-1": "04t5b000002BQb2AAG",
     "OEE-PE-Unlocked@0.6.0-1": "04t5b000002BQbCAAW",
     "OEE-PE-Unlocked@0.7.0-1": "04t5b000002BQcZAAW",
-    "OEE-PE-Unlocked@0.8.0-1": "04t5b000002BQcyAAG"
+    "OEE-PE-Unlocked@0.8.0-1": "04t5b000002BQcyAAG",
+    "OEE-PE-Unlocked@0.9.0-1": "04t5b000002BQggAAG"
   },
   "sourceApiVersion": "57.0"
 }

@@ -8,7 +8,7 @@ project:
     dependencies:
         - github: 'https://github.com/OEE-Application-Development/OEE-EDA-Base-Unlocked'
         - namespace: lms_hed
-          version: 1.7
+          version: 1.9
     git:
         default_branch: 'main'
     source_format: sfdx
