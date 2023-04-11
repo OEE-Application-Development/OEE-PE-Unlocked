@@ -5,7 +5,7 @@
         <name>Set_Course_Offering_Fields</name>
         <label>Set Course Offering Fields</label>
         <locationX>578</locationX>
-        <locationY>1802</locationY>
+        <locationY>2138</locationY>
         <assignmentItems>
             <assignToReference>Get_Course_Offering.hed__Capacity__c</assignToReference>
             <operator>Assign</operator>
@@ -76,6 +76,13 @@
                 <elementReference>$Record.Section_Number__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_Course_Offering.Cross_Listed_To__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Cross_List_Course.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Update_Course_Offering</targetReference>
         </connector>
@@ -105,7 +112,7 @@
         <name>Create_or_Update_Check</name>
         <label>Create or Update Check</label>
         <locationX>314</locationX>
-        <locationY>1682</locationY>
+        <locationY>2018</locationY>
         <defaultConnector>
             <targetReference>Set_Course_Offering_Fields</targetReference>
         </defaultConnector>
@@ -196,7 +203,7 @@
         <locationX>314</locationX>
         <locationY>1346</locationY>
         <defaultConnector>
-            <targetReference>Create_or_Update_Check</targetReference>
+            <targetReference>Is_Cross_Listing_Set</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No CSU ID</defaultConnectorLabel>
         <rules>
@@ -213,6 +220,35 @@
                 <targetReference>Lookup_Faculty_Contact</targetReference>
             </connector>
             <label>CSU ID Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Cross_Listing_Set</name>
+        <label>Is Cross Listing Set?</label>
+        <locationX>314</locationX>
+        <locationY>1682</locationY>
+        <defaultConnector>
+            <targetReference>Get_Cross_List_Course</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Has Cross Listing</defaultConnectorLabel>
+        <rules>
+            <name>Has_Cross_Listing</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.csuoee__Cross_Listed_Course__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.csuoee__Cross_Listed_Course__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Create_or_Update_Check</targetReference>
+            </connector>
+            <label>No Cross Listing</label>
         </rules>
     </decisions>
     <decisions>
@@ -297,10 +333,16 @@
         <name>Create_Course_Offering</name>
         <label>Create Course Offering</label>
         <locationX>50</locationX>
-        <locationY>2042</locationY>
+        <locationY>2378</locationY>
         <faultConnector>
             <targetReference>Create_Section_Create_Error</targetReference>
         </faultConnector>
+        <inputAssignments>
+            <field>Cross_Listed_To__c</field>
+            <value>
+                <elementReference>Get_Cross_List_Course.Id</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>Name</field>
             <value>
@@ -368,7 +410,7 @@
         <name>Create_Section_Create_Error</name>
         <label>Create Section Create Error</label>
         <locationX>314</locationX>
-        <locationY>2162</locationY>
+        <locationY>2498</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -400,7 +442,7 @@
         <name>Create_Section_Update_Error</name>
         <label>Create Section Update Error</label>
         <locationX>842</locationX>
-        <locationY>2042</locationY>
+        <locationY>2378</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -531,6 +573,27 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <name>Get_Cross_List_Course</name>
+        <label>Get Cross List Course</label>
+        <locationX>402</locationX>
+        <locationY>1802</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_or_Update_Check</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Course_Code__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Cross_Listed_Course__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>hed__Course__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_CSU_by_School_Code</name>
         <label>Get CSU by School Code</label>
         <locationX>380</locationX>
@@ -556,7 +619,7 @@
         <name>Get_Noncredit_Term_RecordType</name>
         <label>Get Noncredit Term RecordType</label>
         <locationX>50</locationX>
-        <locationY>1802</locationY>
+        <locationY>2138</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Term</targetReference>
@@ -585,7 +648,7 @@
         <name>Get_Term</name>
         <label>Get Term</label>
         <locationX>50</locationX>
-        <locationY>1922</locationY>
+        <locationY>2258</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Course_Offering</targetReference>
@@ -617,7 +680,7 @@
         <locationY>1466</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Create_or_Update_Check</targetReference>
+            <targetReference>Is_Cross_Listing_Set</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -637,7 +700,7 @@
         <name>Update_Course_Offering</name>
         <label>Update Course Offering</label>
         <locationX>578</locationX>
-        <locationY>1922</locationY>
+        <locationY>2258</locationY>
         <faultConnector>
             <targetReference>Create_Section_Update_Error</targetReference>
         </faultConnector>
