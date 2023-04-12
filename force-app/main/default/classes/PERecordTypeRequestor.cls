@@ -1,6 +1,6 @@
-global with sharing class PERecordTypeRequest {
+global with sharing class PERecordTypeRequestor {
     
-    @InvocableMethod(Label='Handle Student Enrollment' Description='Creates or updates an enrollment for a student.')
+    @InvocableMethod(Label='Get PE Record Types' Description='Currently supports: "Term"')
     global static List<RecordType> getPERecordTypes(List<PERecordTypeRequest> requests) {
         List<RecordType> recordTypes = new List<RecordType>();
         for(PERecordTypeRequest request : requests) {
@@ -20,8 +20,8 @@ global with sharing class PERecordTypeRequest {
         @InvocableVariable(Required=true Description='e.g. Term for Noncredit Term RecordType')
         global String recordTypeName;
 
-        public EnrollmentRequest(){}
-        public EnrollmentRequest(String recordTypeName) {
+        public PERecordTypeRequest(){}
+        public PERecordTypeRequest(String recordTypeName) {
             this.recordTypeName = recordTypeName;
         }
     }
