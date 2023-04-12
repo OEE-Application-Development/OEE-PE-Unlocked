@@ -70,13 +70,6 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Get_Course_Offering.lms_hed__LMS_Offering_ID__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Section_Number__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>Get_Course_Offering.Cross_Listed_To__c</assignToReference>
             <operator>Assign</operator>
             <value>
@@ -389,12 +382,6 @@
             <field>hed__Term__c</field>
             <value>
                 <elementReference>Get_Term.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>lms_hed__LMS_Offering_ID__c</field>
-            <value>
-                <elementReference>$Record.Section_Number__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
