@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Get_Noncredit_Term_RecordType</name>
+        <label>Get Noncredit Term RecordType</label>
+        <locationX>314</locationX>
+        <locationY>434</locationY>
+        <actionName>PERecordTypeRequestor</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Term</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recordTypeName</name>
+            <value>
+                <stringValue>Term</stringValue>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>NoncreditTermRecordType</assignToReference>
+            <name>output</name>
+        </outputParameters>
+    </actionCalls>
     <apiVersion>56.0</apiVersion>
     <assignments>
         <name>Set_Course_Offering_Fields</name>
         <label>Set Course Offering Fields</label>
         <locationX>578</locationX>
-        <locationY>2138</locationY>
+        <locationY>2378</locationY>
         <assignmentItems>
             <assignToReference>Get_Course_Offering.hed__Capacity__c</assignToReference>
             <operator>Assign</operator>
@@ -70,13 +92,6 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Get_Course_Offering.lms_hed__LMS_Offering_ID__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Section_Number__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>Get_Course_Offering.Cross_Listed_To__c</assignToReference>
             <operator>Assign</operator>
             <value>
@@ -112,7 +127,7 @@
         <name>Create_or_Update_Check</name>
         <label>Create or Update Check</label>
         <locationX>314</locationX>
-        <locationY>2018</locationY>
+        <locationY>2258</locationY>
         <defaultConnector>
             <targetReference>Set_Course_Offering_Fields</targetReference>
         </defaultConnector>
@@ -128,7 +143,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Noncredit_Term_RecordType</targetReference>
+                <targetReference>Create_Course_Offering</targetReference>
             </connector>
             <label>Requires Create</label>
         </rules>
@@ -137,7 +152,7 @@
         <name>Delivery_Decision</name>
         <label>Delivery Decision</label>
         <locationX>314</locationX>
-        <locationY>554</locationY>
+        <locationY>794</locationY>
         <defaultConnector>
             <targetReference>Get_Building</targetReference>
         </defaultConnector>
@@ -176,7 +191,7 @@
         <name>Does_Building_Require_Create</name>
         <label>Does Building Require Create?</label>
         <locationX>512</locationX>
-        <locationY>794</locationY>
+        <locationY>1034</locationY>
         <defaultConnector>
             <targetReference>Faculty_has_CSU_ID</targetReference>
         </defaultConnector>
@@ -201,7 +216,7 @@
         <name>Faculty_has_CSU_ID</name>
         <label>Faculty has CSU ID?</label>
         <locationX>314</locationX>
-        <locationY>1346</locationY>
+        <locationY>1586</locationY>
         <defaultConnector>
             <targetReference>Is_Cross_Listing_Set</targetReference>
         </defaultConnector>
@@ -226,7 +241,7 @@
         <name>Is_Cross_Listing_Set</name>
         <label>Is Cross Listing Set?</label>
         <locationX>314</locationX>
-        <locationY>1682</locationY>
+        <locationY>1922</locationY>
         <defaultConnector>
             <targetReference>Get_Cross_List_Course</targetReference>
         </defaultConnector>
@@ -268,7 +283,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Course_Offering</targetReference>
+                <targetReference>Get_Noncredit_Term_RecordType</targetReference>
             </connector>
             <label>Noncredit</label>
         </rules>
@@ -304,7 +319,7 @@
         <name>Create_Building</name>
         <label>Create Building</label>
         <locationX>380</locationX>
-        <locationY>1034</locationY>
+        <locationY>1274</locationY>
         <assignRecordIdToReference>FacilityId</assignRecordIdToReference>
         <connector>
             <targetReference>Faculty_has_CSU_ID</targetReference>
@@ -392,12 +407,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>lms_hed__LMS_Offering_ID__c</field>
-            <value>
-                <elementReference>$Record.Section_Number__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>lms_hed__LMS_Reference_Code__c</field>
             <value>
                 <elementReference>$Record.Section_Reference__c</elementReference>
@@ -442,7 +451,7 @@
         <name>Create_Section_Update_Error</name>
         <label>Create Section Update Error</label>
         <locationX>842</locationX>
-        <locationY>2378</locationY>
+        <locationY>2618</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -474,7 +483,7 @@
         <name>Get_Building</name>
         <label>Get Building</label>
         <locationX>512</locationX>
-        <locationY>674</locationY>
+        <locationY>914</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Does_Building_Require_Create</targetReference>
@@ -504,7 +513,7 @@
         <name>Get_Canvas_Facility</name>
         <label>Get Canvas Facility</label>
         <locationX>116</locationX>
-        <locationY>674</locationY>
+        <locationY>914</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Faculty_has_CSU_ID</targetReference>
@@ -548,7 +557,7 @@
         <name>Get_Course_Offering</name>
         <label>Get Course Offering</label>
         <locationX>314</locationX>
-        <locationY>434</locationY>
+        <locationY>674</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Delivery_Decision</targetReference>
@@ -568,6 +577,13 @@
                 <elementReference>$Record.Section_Number__c</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>hed__Term__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Term.Id</elementReference>
+            </value>
+        </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>hed__Course_Offering__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -576,7 +592,7 @@
         <name>Get_Cross_List_Course</name>
         <label>Get Cross List Course</label>
         <locationX>402</locationX>
-        <locationY>1802</locationY>
+        <locationY>2042</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_or_Update_Check</targetReference>
@@ -597,7 +613,7 @@
         <name>Get_CSU_by_School_Code</name>
         <label>Get CSU by School Code</label>
         <locationX>380</locationX>
-        <locationY>914</locationY>
+        <locationY>1154</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Building</targetReference>
@@ -616,42 +632,13 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <name>Get_Noncredit_Term_RecordType</name>
-        <label>Get Noncredit Term RecordType</label>
-        <locationX>50</locationX>
-        <locationY>2138</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Term</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>SobjectType</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>hed__Term__c</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>NoncreditRecordTypeDeveloperName</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>RecordType</object>
-        <queriedFields>Id</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Term</name>
         <label>Get Term</label>
-        <locationX>50</locationX>
-        <locationY>2258</locationY>
+        <locationX>314</locationX>
+        <locationY>554</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Create_Course_Offering</targetReference>
+            <targetReference>Get_Course_Offering</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -665,19 +652,18 @@
             <field>RecordTypeId</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Get_Noncredit_Term_RecordType.Id</elementReference>
+                <elementReference>NoncreditTermRecordType.Id</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>hed__Term__c</object>
-        <queriedFields>Id</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>Lookup_Faculty_Contact</name>
         <label>Lookup Faculty Contact</label>
         <locationX>182</locationX>
-        <locationY>1466</locationY>
+        <locationY>1706</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Cross_Listing_Set</targetReference>
@@ -700,7 +686,7 @@
         <name>Update_Course_Offering</name>
         <label>Update Course Offering</label>
         <locationX>578</locationX>
-        <locationY>2258</locationY>
+        <locationY>2498</locationY>
         <faultConnector>
             <targetReference>Create_Section_Update_Error</targetReference>
         </faultConnector>
@@ -729,5 +715,13 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>NoncreditTermRecordType</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>RecordType</objectType>
     </variables>
 </Flow>
