@@ -7,8 +7,6 @@ project:
         api_version: '57.0'
     dependencies:
         - github: 'https://github.com/OEE-Application-Development/OEE-EDA-Base-Unlocked'
-        - namespace: lms_hed
-          version: '1.14'
     git:
         default_branch: 'main'
     source_format: sfdx
