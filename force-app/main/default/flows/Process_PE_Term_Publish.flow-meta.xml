@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Get_Institution_Record_Type</name>
         <label>Get Institution Record Type</label>
-        <locationX>50</locationX>
-        <locationY>554</locationY>
+        <locationX>242</locationX>
+        <locationY>674</locationY>
         <actionName>PERecordTypeRequestor</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -22,8 +22,8 @@
     <actionCalls>
         <name>Get_Noncredit_Term_RecordType</name>
         <label>Get Noncredit Term RecordType</label>
-        <locationX>182</locationX>
-        <locationY>194</locationY>
+        <locationX>374</locationX>
+        <locationY>314</locationY>
         <actionName>PERecordTypeRequestor</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -41,8 +41,8 @@
     <actionCalls>
         <name>Get_PE_Account</name>
         <label>Get CSUOEE Institution</label>
-        <locationX>50</locationX>
-        <locationY>674</locationY>
+        <locationX>242</locationX>
+        <locationY>794</locationY>
         <actionName>AccountRequestor</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -67,8 +67,8 @@
     <decisions>
         <name>Does_Term_Exist</name>
         <label>Does Term Exist?</label>
-        <locationX>182</locationX>
-        <locationY>434</locationY>
+        <locationX>374</locationX>
+        <locationY>554</locationY>
         <defaultConnector>
             <targetReference>Update_Term</targetReference>
         </defaultConnector>
@@ -87,6 +87,28 @@
                 <targetReference>Get_Institution_Record_Type</targetReference>
             </connector>
             <label>Term Requires Create</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Credit</name>
+        <label>Is Credit?</label>
+        <locationX>176</locationX>
+        <locationY>194</locationY>
+        <defaultConnector>
+            <targetReference>Get_Noncredit_Term_RecordType</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Noncredit</defaultConnectorLabel>
+        <rules>
+            <name>Credit</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.csuoee__Is_Credit__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Credit</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -119,8 +141,8 @@
     <recordCreates>
         <name>Create_Term</name>
         <label>Create Term</label>
-        <locationX>50</locationX>
-        <locationY>794</locationY>
+        <locationX>242</locationX>
+        <locationY>914</locationY>
         <inputAssignments>
             <field>Is_Visible__c</field>
             <value>
@@ -169,8 +191,8 @@
     <recordLookups>
         <name>Get_Noncredit_Term</name>
         <label>Get Noncredit Term</label>
-        <locationX>182</locationX>
-        <locationY>314</locationY>
+        <locationX>374</locationX>
+        <locationY>434</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Does_Term_Exist</targetReference>
@@ -190,8 +212,8 @@
     <recordUpdates>
         <name>Update_Term</name>
         <label>Update Term</label>
-        <locationX>314</locationX>
-        <locationY>554</locationY>
+        <locationX>506</locationX>
+        <locationY>674</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -215,10 +237,10 @@
         <object>hed__Term__c</object>
     </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Noncredit_Term_RecordType</targetReference>
+            <targetReference>Is_Credit</targetReference>
         </connector>
         <object>Term_Publish__e</object>
         <triggerType>PlatformEvent</triggerType>
