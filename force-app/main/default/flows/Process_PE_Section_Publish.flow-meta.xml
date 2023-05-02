@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Get_CSUOEE_Dept</name>
+        <label>Get CSUOEE Dept</label>
+        <locationX>402</locationX>
+        <locationY>914</locationY>
+        <actionName>AccountRequestor</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Create_Term</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recordTypeId</name>
+            <value>
+                <elementReference>Get_Department_Record_Type.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>schoolCode</name>
+            <value>
+                <stringValue>CSUOEE</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Get_Department_Record_Type</name>
+        <label>Get Department Record Type</label>
+        <locationX>402</locationX>
+        <locationY>794</locationY>
+        <actionName>PERecordTypeRequestor</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_CSUOEE_Dept</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recordTypeName</name>
+            <value>
+                <stringValue>Department</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Get_Noncredit_Term_RecordType</name>
         <label>Get Noncredit Term RecordType</label>
         <locationX>314</locationX>
@@ -27,7 +71,7 @@
         <name>Set_Course_Offering_Fields</name>
         <label>Set Course Offering Fields</label>
         <locationX>578</locationX>
-        <locationY>2378</locationY>
+        <locationY>2954</locationY>
         <assignmentItems>
             <assignToReference>Get_Course_Offering.hed__Capacity__c</assignToReference>
             <operator>Assign</operator>
@@ -127,7 +171,7 @@
         <name>Create_or_Update_Check</name>
         <label>Create or Update Check</label>
         <locationX>314</locationX>
-        <locationY>2258</locationY>
+        <locationY>2834</locationY>
         <defaultConnector>
             <targetReference>Set_Course_Offering_Fields</targetReference>
         </defaultConnector>
@@ -152,7 +196,7 @@
         <name>Delivery_Decision</name>
         <label>Delivery Decision</label>
         <locationX>314</locationX>
-        <locationY>794</locationY>
+        <locationY>1370</locationY>
         <defaultConnector>
             <targetReference>Get_Building</targetReference>
         </defaultConnector>
@@ -191,7 +235,7 @@
         <name>Does_Building_Require_Create</name>
         <label>Does Building Require Create?</label>
         <locationX>512</locationX>
-        <locationY>1034</locationY>
+        <locationY>1610</locationY>
         <defaultConnector>
             <targetReference>Faculty_has_CSU_ID</targetReference>
         </defaultConnector>
@@ -213,10 +257,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Does_Term_Exist</name>
+        <label>Does Term Exist?</label>
+        <locationX>314</locationX>
+        <locationY>674</locationY>
+        <defaultConnector>
+            <targetReference>Get_Department_Record_Type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Term Requires Create</defaultConnectorLabel>
+        <rules>
+            <name>Term_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Term.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Course_Offering</targetReference>
+            </connector>
+            <label>Term Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Faculty_has_CSU_ID</name>
         <label>Faculty has CSU ID?</label>
         <locationX>314</locationX>
-        <locationY>1586</locationY>
+        <locationY>2162</locationY>
         <defaultConnector>
             <targetReference>Is_Cross_Listing_Set</targetReference>
         </defaultConnector>
@@ -241,7 +310,7 @@
         <name>Is_Cross_Listing_Set</name>
         <label>Is Cross Listing Set?</label>
         <locationX>314</locationX>
-        <locationY>1922</locationY>
+        <locationY>2498</locationY>
         <defaultConnector>
             <targetReference>Get_Cross_List_Course</targetReference>
         </defaultConnector>
@@ -294,6 +363,11 @@
         <dataType>String</dataType>
         <expression>{!$Record.csuoee__Course_Code__c}&amp;&apos; &apos;&amp;{!$Record.csuoee__Section_Number__c}</expression>
     </formulas>
+    <formulas>
+        <name>GetTermReferenceFromSection</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Record.csuoee__Section_Reference__c}, 6)&amp;&apos;-NCT&apos;</expression>
+    </formulas>
     <interviewLabel>Process PE Section Publish {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Process PE Section Publish</label>
     <processMetadataValues>
@@ -319,7 +393,7 @@
         <name>Create_Building</name>
         <label>Create Building</label>
         <locationX>380</locationX>
-        <locationY>1274</locationY>
+        <locationY>1850</locationY>
         <assignRecordIdToReference>FacilityId</assignRecordIdToReference>
         <connector>
             <targetReference>Faculty_has_CSU_ID</targetReference>
@@ -348,7 +422,7 @@
         <name>Create_Course_Offering</name>
         <label>Create Course Offering</label>
         <locationX>50</locationX>
-        <locationY>2378</locationY>
+        <locationY>2954</locationY>
         <faultConnector>
             <targetReference>Create_Section_Create_Error</targetReference>
         </faultConnector>
@@ -419,7 +493,7 @@
         <name>Create_Section_Create_Error</name>
         <label>Create Section Create Error</label>
         <locationX>314</locationX>
-        <locationY>2498</locationY>
+        <locationY>3074</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -451,7 +525,7 @@
         <name>Create_Section_Update_Error</name>
         <label>Create Section Update Error</label>
         <locationX>842</locationX>
-        <locationY>2618</locationY>
+        <locationY>3194</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -479,11 +553,52 @@
         <object>hed__Error__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
+    <recordCreates>
+        <name>Create_Term</name>
+        <label>Create Term</label>
+        <locationX>402</locationX>
+        <locationY>1034</locationY>
+        <assignRecordIdToReference>Get_Term.Id</assignRecordIdToReference>
+        <connector>
+            <targetReference>Get_Course_Offering</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>$Record.Term_Name__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>NoncreditTermRecordType.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>hed__Account__c</field>
+            <value>
+                <elementReference>Get_CSUOEE_Dept.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>hed__Type__c</field>
+            <value>
+                <stringValue>Semester</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>lms_hed__LMS_Reference_Code__c</field>
+            <value>
+                <elementReference>GetTermReferenceFromSection</elementReference>
+            </value>
+        </inputAssignments>
+        <object>hed__Term__c</object>
+    </recordCreates>
     <recordLookups>
         <name>Get_Building</name>
         <label>Get Building</label>
         <locationX>512</locationX>
-        <locationY>914</locationY>
+        <locationY>1490</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Does_Building_Require_Create</targetReference>
@@ -513,7 +628,7 @@
         <name>Get_Canvas_Facility</name>
         <label>Get Canvas Facility</label>
         <locationX>116</locationX>
-        <locationY>914</locationY>
+        <locationY>1490</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Faculty_has_CSU_ID</targetReference>
@@ -557,7 +672,7 @@
         <name>Get_Course_Offering</name>
         <label>Get Course Offering</label>
         <locationX>314</locationX>
-        <locationY>674</locationY>
+        <locationY>1250</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Delivery_Decision</targetReference>
@@ -592,7 +707,7 @@
         <name>Get_Cross_List_Course</name>
         <label>Get Cross List Course</label>
         <locationX>402</locationX>
-        <locationY>2042</locationY>
+        <locationY>2618</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_or_Update_Check</targetReference>
@@ -613,7 +728,7 @@
         <name>Get_CSU_by_School_Code</name>
         <label>Get CSU by School Code</label>
         <locationX>380</locationX>
-        <locationY>1154</locationY>
+        <locationY>1730</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Building</targetReference>
@@ -638,7 +753,7 @@
         <locationY>554</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Course_Offering</targetReference>
+            <targetReference>Does_Term_Exist</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -663,7 +778,7 @@
         <name>Lookup_Faculty_Contact</name>
         <label>Lookup Faculty Contact</label>
         <locationX>182</locationX>
-        <locationY>1706</locationY>
+        <locationY>2282</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Cross_Listing_Set</targetReference>
@@ -686,7 +801,7 @@
         <name>Update_Course_Offering</name>
         <label>Update Course Offering</label>
         <locationX>578</locationX>
-        <locationY>2498</locationY>
+        <locationY>3074</locationY>
         <faultConnector>
             <targetReference>Create_Section_Update_Error</targetReference>
         </faultConnector>

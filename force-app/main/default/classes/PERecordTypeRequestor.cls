@@ -1,12 +1,15 @@
 global with sharing class PERecordTypeRequestor {
     
-    @InvocableMethod(Label='Get PE Record Types' Description='Currently supports: "Term"')
+    @InvocableMethod(Label='Get PE Record Types' Description='Currently supports: "Term", "Department"')
     global static List<RecordType> getPERecordTypes(List<PERecordTypeRequest> requests) {
         List<RecordType> recordTypes = new List<RecordType>();
         for(PERecordTypeRequest request : requests) {
             switch on request.recordTypeName {
                 when 'Term' {
                     recordTypes.add(PEHelpers.getNoncreditTermType());
+                }
+                when 'Department' {
+                    recordTypes.add(PEHelpers.getNoncreditDeptRecordType());
                 }
                 when else {
                     recordTypes.add(null);

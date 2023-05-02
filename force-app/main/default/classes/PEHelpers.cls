@@ -9,4 +9,13 @@ global with sharing class PEHelpers {
         return noncreditTermRecordType;
     }
 
+    global static RecordType noncreditDeptRecordType = null;
+    global static RecordType getNoncreditDeptRecordType() {
+        if(noncreditTermRecordType == null) {
+            noncreditTermRecordType = [select Id from RecordType where SobjectType = 'Account' and DeveloperName = 'University_Department' LIMIT 1];
+        }
+
+        return noncreditTermRecordType;
+    }
+
 }
