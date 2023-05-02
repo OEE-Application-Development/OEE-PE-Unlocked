@@ -4,19 +4,23 @@ global with sharing class PERecordTypeRequestor {
     global static List<RecordType> getPERecordTypes(List<PERecordTypeRequest> requests) {
         List<RecordType> recordTypes = new List<RecordType>();
         for(PERecordTypeRequest request : requests) {
-            switch on request.recordTypeName {
-                when 'Term' {
-                    recordTypes.add(PEHelpers.getNoncreditTermType());
+            try {
+                switch on request.recordTypeName {
+                    when 'Term' {
+                        recordTypes.add(PEHelpers.getNoncreditTermType());
+                    }
+                    when 'Educational Institution' {
+                        recordTypes.add(PEHelpers.getNoncreditInstitutionType());
+                    }
+                    when 'Department' {
+                        recordTypes.add(PEHelpers.getNoncreditDeptRecordType());
+                    }
+                    when else {
+                        recordTypes.add(null);
+                    }
                 }
-                when 'Educational Institution' {
-                    recordTypes.add(PEHelpers.getNoncreditInstitutionType());
-                }
-                when 'Department' {
-                    recordTypes.add(PEHelpers.getNoncreditDeptRecordType());
-                }
-                when else {
-                    recordTypes.add(null);
-                }
+            } catch(System.QueryException qe) {
+                recordTypes.add(null);
             }
         }
         return recordTypes;
