@@ -8,6 +8,9 @@ global with sharing class PERecordTypeRequestor {
                 when 'Term' {
                     recordTypes.add(PEHelpers.getNoncreditTermType());
                 }
+                when 'Educational Institution' {
+                    recordTypes.add(PEHelpers.getNoncreditInstitutionType());
+                }
                 when 'Department' {
                     recordTypes.add(PEHelpers.getNoncreditDeptRecordType());
                 }

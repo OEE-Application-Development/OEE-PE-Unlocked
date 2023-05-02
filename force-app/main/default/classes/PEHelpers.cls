@@ -11,11 +11,20 @@ global with sharing class PEHelpers {
 
     global static RecordType noncreditDeptRecordType = null;
     global static RecordType getNoncreditDeptRecordType() {
-        if(noncreditTermRecordType == null) {
-            noncreditTermRecordType = [select Id from RecordType where SobjectType = 'Account' and DeveloperName = 'University_Department' LIMIT 1];
+        if(noncreditDeptRecordType == null) {
+            noncreditDeptRecordType = [select Id from RecordType where SobjectType = 'Account' and DeveloperName = 'University_Department' LIMIT 1];
         }
 
-        return noncreditTermRecordType;
+        return noncreditDeptRecordType;
+    }
+
+    global static RecordType noncreditInstitutionType = null;
+    global static RecordType getNoncreditInstitutionType() {
+        if(noncreditInstitutionType == null) {
+            noncreditInstitutionType = [select Id from RecordType where SobjectType = 'Account' and DeveloperName = 'Educational_Institution' LIMIT 1];
+        }
+
+        return noncreditInstitutionType;
     }
 
 }
