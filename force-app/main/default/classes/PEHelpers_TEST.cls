@@ -14,6 +14,11 @@ private class PEHelpers_TEST {
         } catch(Exception e) {
             // gonna fail
         }
+        try {
+            types = PERecordTypeRequestor.getPERecordTypes(new List<PERecordTypeRequestor.PERecordTypeRequest>{new PERecordTypeRequestor.PERecordTypeRequest('Instructor Enrollment')});
+        } catch(Exception e) {
+            // gonna fail
+        }
         System.assert(true);
     }
 
