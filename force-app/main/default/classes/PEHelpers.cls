@@ -27,4 +27,13 @@ global with sharing class PEHelpers {
         return noncreditInstitutionType;
     }
 
+    global static RecordType noncreditInstructorEnrollmentRecordType = null;
+    global static RecordType getNoncreditInstructorEnrollmentRecordType() {
+        if(noncreditInstructorEnrollmentRecordType == null) {
+            noncreditInstructorEnrollmentRecordType = [select Id from RecordType where SobjectType = 'hed__Course_Enrollment__c' and DeveloperName = 'Faculty' LIMIT 1];
+        }
+
+        return noncreditInstructorEnrollmentRecordType;
+    }
+
 }

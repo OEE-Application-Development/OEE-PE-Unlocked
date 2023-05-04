@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Get_CSUOEE_Dept</name>
         <label>Get CSUOEE Dept</label>
-        <locationX>402</locationX>
+        <locationX>798</locationX>
         <locationY>914</locationY>
         <actionName>AccountRequestor</actionName>
         <actionType>apex</actionType>
@@ -28,7 +28,7 @@
     <actionCalls>
         <name>Get_Department_Record_Type</name>
         <label>Get Department Record Type</label>
-        <locationX>402</locationX>
+        <locationX>798</locationX>
         <locationY>794</locationY>
         <actionName>PERecordTypeRequestor</actionName>
         <actionType>apex</actionType>
@@ -45,9 +45,31 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
+        <name>Get_Instructor_Enrollment_RecordType</name>
+        <label>Get Instructor Enrollment RecordType</label>
+        <locationX>314</locationX>
+        <locationY>3674</locationY>
+        <actionName>PERecordTypeRequestor</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Find_Primary_Instructor_on_Section</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recordTypeName</name>
+            <value>
+                <elementReference>NoncreditRecordTypeDeveloperName</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>InstructorEnrollmentRecordType</assignToReference>
+            <name>output</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Get_Noncredit_Term_RecordType</name>
         <label>Get Noncredit Term RecordType</label>
-        <locationX>314</locationX>
+        <locationX>710</locationX>
         <locationY>434</locationY>
         <actionName>PERecordTypeRequestor</actionName>
         <actionType>apex</actionType>
@@ -70,7 +92,7 @@
     <assignments>
         <name>Set_Course_Offering_Fields</name>
         <label>Set Course Offering Fields</label>
-        <locationX>578</locationX>
+        <locationX>974</locationX>
         <locationY>2954</locationY>
         <assignmentItems>
             <assignToReference>Get_Course_Offering.hed__Capacity__c</assignToReference>
@@ -142,6 +164,13 @@
                 <elementReference>Get_Cross_List_Course.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OfferingId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Course_Offering.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Update_Course_Offering</targetReference>
         </connector>
@@ -161,6 +190,13 @@
         </value>
     </constants>
     <constants>
+        <name>InstructorEnrollmentRecordTypeName</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Instructor Enrollment</stringValue>
+        </value>
+    </constants>
+    <constants>
         <name>NoncreditRecordTypeDeveloperName</name>
         <dataType>String</dataType>
         <value>
@@ -168,9 +204,31 @@
         </value>
     </constants>
     <decisions>
+        <name>Create_Instructor_Enrollment_if_Faculty_Found</name>
+        <label>Create Instructor Enrollment if Faculty Found</label>
+        <locationX>710</locationX>
+        <locationY>3554</locationY>
+        <defaultConnectorLabel>Faculty Missing</defaultConnectorLabel>
+        <rules>
+            <name>Faculty_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Lookup_Faculty_Contact</leftValueReference>
+                <operator>WasVisited</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Instructor_Enrollment_RecordType</targetReference>
+            </connector>
+            <label>Faculty Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Create_or_Update_Check</name>
         <label>Create or Update Check</label>
-        <locationX>314</locationX>
+        <locationX>710</locationX>
         <locationY>2834</locationY>
         <defaultConnector>
             <targetReference>Set_Course_Offering_Fields</targetReference>
@@ -195,7 +253,7 @@
     <decisions>
         <name>Delivery_Decision</name>
         <label>Delivery Decision</label>
-        <locationX>314</locationX>
+        <locationX>710</locationX>
         <locationY>1370</locationY>
         <defaultConnector>
             <targetReference>Get_Building</targetReference>
@@ -234,7 +292,7 @@
     <decisions>
         <name>Does_Building_Require_Create</name>
         <label>Does Building Require Create?</label>
-        <locationX>512</locationX>
+        <locationX>908</locationX>
         <locationY>1610</locationY>
         <defaultConnector>
             <targetReference>Faculty_has_CSU_ID</targetReference>
@@ -257,9 +315,34 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Does_Primary_Instructor_Enrollment_Exist</name>
+        <label>Does Primary Instructor Enrollment Exist?</label>
+        <locationX>314</locationX>
+        <locationY>3914</locationY>
+        <defaultConnector>
+            <targetReference>Create_Primary_Instructor_Enrollment</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Primary Instructor Enrollment Missing</defaultConnectorLabel>
+        <rules>
+            <name>Primary_Instructor_Enrollment_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Find_Primary_Instructor_on_Section.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Contact_on_Enrollment</targetReference>
+            </connector>
+            <label>Primary Instructor Enrollment Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Does_Term_Exist</name>
         <label>Does Term Exist?</label>
-        <locationX>314</locationX>
+        <locationX>710</locationX>
         <locationY>674</locationY>
         <defaultConnector>
             <targetReference>Get_Department_Record_Type</targetReference>
@@ -284,7 +367,7 @@
     <decisions>
         <name>Faculty_has_CSU_ID</name>
         <label>Faculty has CSU ID?</label>
-        <locationX>314</locationX>
+        <locationX>710</locationX>
         <locationY>2162</locationY>
         <defaultConnector>
             <targetReference>Is_Cross_Listing_Set</targetReference>
@@ -309,7 +392,7 @@
     <decisions>
         <name>Is_Cross_Listing_Set</name>
         <label>Is Cross Listing Set?</label>
-        <locationX>314</locationX>
+        <locationX>710</locationX>
         <locationY>2498</locationY>
         <defaultConnector>
             <targetReference>Get_Cross_List_Course</targetReference>
@@ -338,7 +421,7 @@
     <decisions>
         <name>Is_this_Course_Noncredit</name>
         <label>Is this Course Noncredit?</label>
-        <locationX>710</locationX>
+        <locationX>1106</locationX>
         <locationY>314</locationY>
         <defaultConnectorLabel>Credit</defaultConnectorLabel>
         <rules>
@@ -392,7 +475,7 @@
     <recordCreates>
         <name>Create_Building</name>
         <label>Create Building</label>
-        <locationX>380</locationX>
+        <locationX>776</locationX>
         <locationY>1850</locationY>
         <assignRecordIdToReference>FacilityId</assignRecordIdToReference>
         <connector>
@@ -421,8 +504,12 @@
     <recordCreates>
         <name>Create_Course_Offering</name>
         <label>Create Course Offering</label>
-        <locationX>50</locationX>
+        <locationX>446</locationX>
         <locationY>2954</locationY>
+        <assignRecordIdToReference>OfferingId</assignRecordIdToReference>
+        <connector>
+            <targetReference>Create_Instructor_Enrollment_if_Faculty_Found</targetReference>
+        </connector>
         <faultConnector>
             <targetReference>Create_Section_Create_Error</targetReference>
         </faultConnector>
@@ -487,12 +574,116 @@
             </value>
         </inputAssignments>
         <object>hed__Course_Offering__c</object>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Instructor_Enrollment_Create_Error</name>
+        <label>Create Instructor Enrollment Create Error</label>
+        <locationX>842</locationX>
+        <locationY>4154</locationY>
+        <inputAssignments>
+            <field>hed__Error_Type__c</field>
+            <value>
+                <stringValue>Object Create</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>hed__Full_Message__c</field>
+            <value>
+                <stringValue>Primary Instructor Enrollment Create Failed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>hed__Object_Type__c</field>
+            <value>
+                <stringValue>hed__Course_Enrollment__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>hed__Stack_Trace__c</field>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <object>hed__Error__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Instructor_Enrollment_Update_Error</name>
+        <label>Create Instructor Enrollment Update Error</label>
+        <locationX>314</locationX>
+        <locationY>4154</locationY>
+        <inputAssignments>
+            <field>hed__Error_Type__c</field>
+            <value>
+                <stringValue>Object Update</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>hed__Full_Message__c</field>
+            <value>
+                <stringValue>Primary Instructor Enrollment Update Failed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>hed__Object_Type__c</field>
+            <value>
+                <stringValue>hed__Course_Enrollment__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>hed__Stack_Trace__c</field>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <object>hed__Error__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Primary_Instructor_Enrollment</name>
+        <label>Create Primary Instructor Enrollment</label>
+        <locationX>578</locationX>
+        <locationY>4034</locationY>
+        <faultConnector>
+            <targetReference>Create_Instructor_Enrollment_Create_Error</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>InstructorEnrollmentRecordType.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>hed__Contact__c</field>
+            <value>
+                <elementReference>FacultyId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>hed__Course_Offering__c</field>
+            <value>
+                <elementReference>OfferingId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>hed__Primary__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>hed__Status__c</field>
+            <value>
+                <stringValue>Current</stringValue>
+            </value>
+        </inputAssignments>
+        <object>hed__Course_Enrollment__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordCreates>
         <name>Create_Section_Create_Error</name>
         <label>Create Section Create Error</label>
-        <locationX>314</locationX>
+        <locationX>710</locationX>
         <locationY>3074</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
@@ -524,7 +715,7 @@
     <recordCreates>
         <name>Create_Section_Update_Error</name>
         <label>Create Section Update Error</label>
-        <locationX>842</locationX>
+        <locationX>1238</locationX>
         <locationY>3194</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
@@ -556,7 +747,7 @@
     <recordCreates>
         <name>Create_Term</name>
         <label>Create Term</label>
-        <locationX>402</locationX>
+        <locationX>798</locationX>
         <locationY>1034</locationY>
         <assignRecordIdToReference>Get_Term.Id</assignRecordIdToReference>
         <connector>
@@ -595,9 +786,46 @@
         <object>hed__Term__c</object>
     </recordCreates>
     <recordLookups>
+        <name>Find_Primary_Instructor_on_Section</name>
+        <label>Find Primary Instructor on Section</label>
+        <locationX>314</locationX>
+        <locationY>3794</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Does_Primary_Instructor_Enrollment_Exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>hed__Primary__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>hed__Course_Offering__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>OfferingId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>InstructorEnrollmentRecordType.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>hed__Course_Enrollment__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>hed__Contact__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Building</name>
         <label>Get Building</label>
-        <locationX>512</locationX>
+        <locationX>908</locationX>
         <locationY>1490</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -627,7 +855,7 @@
     <recordLookups>
         <name>Get_Canvas_Facility</name>
         <label>Get Canvas Facility</label>
-        <locationX>116</locationX>
+        <locationX>512</locationX>
         <locationY>1490</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -650,7 +878,7 @@
     <recordLookups>
         <name>Get_Course</name>
         <label>Get Course</label>
-        <locationX>710</locationX>
+        <locationX>1106</locationX>
         <locationY>194</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -671,7 +899,7 @@
     <recordLookups>
         <name>Get_Course_Offering</name>
         <label>Get Course Offering</label>
-        <locationX>314</locationX>
+        <locationX>710</locationX>
         <locationY>1250</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -706,7 +934,7 @@
     <recordLookups>
         <name>Get_Cross_List_Course</name>
         <label>Get Cross List Course</label>
-        <locationX>402</locationX>
+        <locationX>798</locationX>
         <locationY>2618</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -727,7 +955,7 @@
     <recordLookups>
         <name>Get_CSU_by_School_Code</name>
         <label>Get CSU by School Code</label>
-        <locationX>380</locationX>
+        <locationX>776</locationX>
         <locationY>1730</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -749,7 +977,7 @@
     <recordLookups>
         <name>Get_Term</name>
         <label>Get Term</label>
-        <locationX>314</locationX>
+        <locationX>710</locationX>
         <locationY>554</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -777,7 +1005,7 @@
     <recordLookups>
         <name>Lookup_Faculty_Contact</name>
         <label>Lookup Faculty Contact</label>
-        <locationX>182</locationX>
+        <locationX>578</locationX>
         <locationY>2282</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -798,17 +1026,44 @@
         </outputAssignments>
     </recordLookups>
     <recordUpdates>
+        <name>Update_Contact_on_Enrollment</name>
+        <label>Update Contact on Enrollment</label>
+        <locationX>50</locationX>
+        <locationY>4034</locationY>
+        <faultConnector>
+            <targetReference>Create_Instructor_Enrollment_Update_Error</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Find_Primary_Instructor_on_Section.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>hed__Contact__c</field>
+            <value>
+                <elementReference>FacultyId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>hed__Course_Enrollment__c</object>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_Course_Offering</name>
         <label>Update Course Offering</label>
-        <locationX>578</locationX>
+        <locationX>974</locationX>
         <locationY>3074</locationY>
+        <connector>
+            <targetReference>Create_Instructor_Enrollment_if_Faculty_Found</targetReference>
+        </connector>
         <faultConnector>
             <targetReference>Create_Section_Update_Error</targetReference>
         </faultConnector>
         <inputReference>Get_Course_Offering</inputReference>
     </recordUpdates>
     <start>
-        <locationX>584</locationX>
+        <locationX>980</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Course</targetReference>
@@ -832,11 +1087,26 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>InstructorEnrollmentRecordType</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>RecordType</objectType>
+    </variables>
+    <variables>
         <name>NoncreditTermRecordType</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>RecordType</objectType>
+    </variables>
+    <variables>
+        <name>OfferingId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
 </Flow>
