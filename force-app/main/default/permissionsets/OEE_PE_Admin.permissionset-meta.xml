@@ -330,14 +330,6 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>
-        <recordType>hed__Course_Enrollment__c.Faculty</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>hed__Course_Enrollment__c.Student</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>hed__Course__c.Noncredit</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
