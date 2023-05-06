@@ -31,4 +31,14 @@ private class PEEvent_TEST {
         System.assert(responses.get(0).success);
     }
 
+    @IsTest
+    private static void sendHumanRequired() {
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, BaseTestUtil.getEventCalloutMock());
+        List<AzureEventIntegration.AzureResponse> responses = PEHumanRequiredErrorEvent.sendError(new List<PEHumanRequiredErrorEvent.PEHumanRequiredRequest>{new PEHumanRequiredErrorEvent.PEHumanRequiredRequest('Fulfillment Failed', 'Just a test.')});
+        Test.stopTest();
+
+        System.assert(responses.get(0).success);
+    }
+
 }
