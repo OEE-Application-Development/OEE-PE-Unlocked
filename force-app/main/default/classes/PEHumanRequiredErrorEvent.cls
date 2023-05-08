@@ -25,6 +25,7 @@ global with sharing class PEHumanRequiredErrorEvent {
         @InvocableVariable(Required=true Description='Error Message')
         global String message;
 
+        global PEHumanRequiredRequest() {}
         global PEHumanRequiredRequest(String errorType, String message) {
             super(false);
             this.errorType = errorType;
