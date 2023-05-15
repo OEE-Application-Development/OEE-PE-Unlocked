@@ -106,6 +106,13 @@
                 <elementReference>CoalesceEmail</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ContactToUpdate.CSU_ID__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.CSU_ID__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Run_Contact_Update</targetReference>
         </connector>
@@ -451,6 +458,12 @@
             <field>Birthdate</field>
             <value>
                 <elementReference>$Record.Birthday__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CSU_ID__c</field>
+            <value>
+                <elementReference>$Record.CSU_ID__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
