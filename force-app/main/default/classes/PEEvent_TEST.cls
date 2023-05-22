@@ -41,4 +41,24 @@ private class PEEvent_TEST {
         System.assert(responses.get(0).success);
     }
 
+    @IsTest
+    private static void lmsEnrollmentRequest() {
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, BaseTestUtil.getEventCalloutMock());
+        List<AzureEventIntegration.AzureResponse> responses = PELmsEnrollmentRequestEvent.lmsEnrollmentRequest(new List<PELmsEnrollmentRequestEvent.PELmsEnrollmentRequestRequest>{new PELmsEnrollmentRequestEvent.PELmsEnrollmentRequestRequest('Student', '4TESTUSER', '2023SP-CO-333-100')});
+        Test.stopTest();
+
+        System.assert(responses.get(0).success);
+    }
+
+    @IsTest
+    private static void lmsEnrollmentComplete() {
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, BaseTestUtil.getEventCalloutMock());
+        List<AzureEventIntegration.AzureResponse> responses = PELmsEnrollmentCompleteEvent.lmsEnrollmentComplete(new List<PELmsEnrollmentCompleteEvent.PELmsEnrollmentCompleteRequest>{new PELmsEnrollmentCompleteEvent.PELmsEnrollmentCompleteRequest('123456', '4TESTUSER', '2023SP-CO-333-100', 'https://colostate.test.instructure.com/courses/123456')});
+        Test.stopTest();
+
+        System.assert(responses.get(0).success);
+    }
+
 }
