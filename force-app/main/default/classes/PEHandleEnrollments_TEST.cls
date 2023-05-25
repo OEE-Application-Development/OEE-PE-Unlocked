@@ -1,16 +1,16 @@
 @IsTest
-private class HandleEnrollments_TEST {
+private class PEHandleEnrollments_TEST {
 
     private static final String TEST_USER_ID = 'test-noncredit-id';
     private static final String TEST_SECTION_REFERENCE = 'test-reference';
     @IsTest
     private static void handleStudentEnrollment() {
 
-        List<HandleEnrollments.EnrollmentRequest> requests = new List<HandleEnrollments.EnrollmentRequest>();
-        requests.add(new HandleEnrollments.EnrollmentRequest(TEST_USER_ID, TEST_SECTION_REFERENCE, false));
-        requests.add(new HandleEnrollments.EnrollmentRequest(TEST_USER_ID, TEST_SECTION_REFERENCE, true));
+        List<CombinedFunctions.EnrollmentRequest> requests = new List<CombinedFunctions.EnrollmentRequest>();
+        requests.add(new CombinedFunctions.EnrollmentRequest(TEST_USER_ID, TEST_SECTION_REFERENCE, false));
+        requests.add(new CombinedFunctions.EnrollmentRequest(TEST_USER_ID, TEST_SECTION_REFERENCE, true));
         
-        hed__Course_Enrollment__c enrollment = HandleEnrollments.handleStudentEnrollment(requests)[0];
+        hed__Course_Enrollment__c enrollment = PEHandleEnrollments.handleStudentEnrollment(requests)[0];
         System.assert(enrollment == null);
 
         csuoee__Confirmation_Publish__e event = new csuoee__Confirmation_Publish__e(csuoee__User_Id__c = TEST_USER_ID, csuoee__Section_Reference__c = TEST_SECTION_REFERENCE);
@@ -30,11 +30,11 @@ private class HandleEnrollments_TEST {
         Contact fakeContact = new Contact(AccountId = fakeDept.Id , FirstName = 'Fake', LastName = 'Contact', Noncredit_ID__c = TEST_USER_ID);
         insert fakeContact;
         
-        enrollment = HandleEnrollments.handleStudentEnrollment(requests)[0];
+        enrollment = PEHandleEnrollments.handleStudentEnrollment(requests)[0];
         System.assert(enrollment != null);
         Id generatedId = enrollment.Id;
 
-        enrollment = HandleEnrollments.handleStudentEnrollment(requests)[0];
+        enrollment = PEHandleEnrollments.handleStudentEnrollment(requests)[0];
         System.assertEquals(generatedId, enrollment.Id);
     }
 
