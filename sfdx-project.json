@@ -11,10 +11,13 @@
           "package": "04tHq0000016bsrIAA"
         },
         {
-          "package": "04tDn000000zHtNIAU"
+          "package": "04t4J000001tqJTQAY"
         },
         {
-          "package": "04t5b000002BQpTAAW"
+          "package": "04tDn000000zHxjIAE"
+        },
+        {
+          "package": "04t5b000002BQswAAG"
         }
       ]
     }
@@ -50,7 +53,8 @@
     "OEE-PE-Unlocked@0.20.0-2": "04t5b000002BQrFAAW",
     "OEE-PE-Unlocked@0.20.0-5": "04t5b000002BQrUAAW",
     "OEE-PE-Unlocked@0.20.0-6": "04t5b000002BQrZAAW",
-    "OEE-PE-Unlocked@0.21.0-1": "04t5b000002BQreAAG"
+    "OEE-PE-Unlocked@0.21.0-1": "04t5b000002BQreAAG",
+    "OEE-PE-Unlocked@0.22.0-1": "04t5b000002BQt1AAG"
   },
   "sourceApiVersion": "57.0"
 }
