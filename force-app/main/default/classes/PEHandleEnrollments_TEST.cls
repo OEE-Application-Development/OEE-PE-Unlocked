@@ -7,8 +7,8 @@ private class PEHandleEnrollments_TEST {
     private static void handleStudentEnrollment() {
 
         List<CombinedFunctions.EnrollmentRequest> requests = new List<CombinedFunctions.EnrollmentRequest>();
-        requests.add(new CombinedFunctions.EnrollmentRequest(TEST_USER_ID, TEST_SECTION_REFERENCE, false));
-        requests.add(new CombinedFunctions.EnrollmentRequest(TEST_USER_ID, TEST_SECTION_REFERENCE, true));
+        requests.add(new CombinedFunctions.EnrollmentRequest(TEST_USER_ID, TEST_SECTION_REFERENCE, false, null));
+        requests.add(new CombinedFunctions.EnrollmentRequest(TEST_USER_ID, TEST_SECTION_REFERENCE, true, null));
         
         hed__Course_Enrollment__c enrollment = PEHandleEnrollments.handleStudentEnrollment(requests)[0];
         System.assert(enrollment == null);
