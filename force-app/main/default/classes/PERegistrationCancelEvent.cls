@@ -3,18 +3,18 @@ global with sharing class PERegistrationCancelEvent {
     global static List<AzureEventIntegration.AzureResponse> cancelRegistration(List<PERegistrationCancelRequest> requests) {
         List<AzureEventIntegration.AzureEvent> events = new List<AzureEventIntegration.AzureEvent>();
         for(PERegistrationCancelRequest request : requests) {
-            events.add(RegistrationCancelEvent(request.regId, request.reason));
+            events.add(RegistrationCancelEvent(request.regId, request.reason, request.refundRequested));
         }
 
         return new List<AzureEventIntegration.AzureResponse>{AzureEventIntegration.sendEvents(events, false)};
     }
 
-    private static AzureEventIntegration.AzureEvent RegistrationCancelEvent(String registrationId, String reason) {
+    private static AzureEventIntegration.AzureEvent RegistrationCancelEvent(String registrationId, String reason, Boolean refundRequested) {
         return new AzureEventIntegration.AzureEvent(
             'registration', 
             'RegistrationCancel', 
             'csuoee/noncredit/registration', 
-            new Map<String, Object>{'registrationId' => registrationId, 'reason' => reason}
+            new Map<String, Object>{'registrationId' => registrationId, 'reason' => reason, 'refundRequested' => refundRequested}
         );
     }
 
@@ -25,6 +25,9 @@ global with sharing class PERegistrationCancelEvent {
         @InvocableVariable(Required=true Description='Reason for cancellation. Not required - in SF will default to \'Cancelled by SF Admin\'')
         global String reason = 'Cancelled by SF Admin';
 
+        @InvocableVariable(Required=false Description='Should we notify that a refund is requested?')
+        global Boolean refundRequested = false;
+
         global PERegistrationCancelRequest(String regId) {
             this(regId, null);
         }
@@ -34,6 +37,14 @@ global with sharing class PERegistrationCancelEvent {
             this.regId = regId;
             if(reason != null)
                 this.reason = reason;
+        }
+
+        global PERegistrationCancelRequest(String regId, String reason, Boolean refundRequested) {
+            super(false);
+            this.regId = regId;
+            if(reason != null)
+                this.reason = reason;
+            this.refundRequested = refundRequested;
         }
     }
 }

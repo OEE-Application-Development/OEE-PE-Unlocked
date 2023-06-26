@@ -1,6 +1,7 @@
 {
   "orgName": "OEE-ProfessionalEducation - Dev Org",
   "sourceOrg": "00D6g000002hydVEAQ",
+  "features": ["SharedActivities"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
