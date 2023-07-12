@@ -115,7 +115,7 @@
     <formulas>
         <name>TermNameToReference</name>
         <dataType>String</dataType>
-        <expression>RIGHT({!$Record.csuoee__Term_Name__c}, FIND(&apos; &apos;, {!$Record.csuoee__Term_Name__c}))&amp;CASE(LEFT({!$Record.csuoee__Term_Name__c}, FIND(&apos; &apos;, {!$Record.csuoee__Term_Name__c})), &apos;Spring &apos;, &apos;SP&apos;, &apos;Summer &apos;, &apos;SM&apos;, &apos;FA&apos;)&amp;&apos;-NCT&apos;</expression>
+        <expression>RIGHT({!$Record.csuoee__Term_Name__c}, FIND(&apos; &apos;, {!$Record.csuoee__Term_Name__c})-3)&amp;CASE(LEFT({!$Record.csuoee__Term_Name__c}, FIND(&apos; &apos;, {!$Record.csuoee__Term_Name__c})), &apos;Spring &apos;, &apos;SP&apos;, &apos;Summer &apos;, &apos;SM&apos;, &apos;FA&apos;)&amp;&apos;-NCT&apos;</expression>
     </formulas>
     <interviewLabel>Process PE Term Publish {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Process PE Term Publish</label>
@@ -245,5 +245,5 @@
         <object>Term_Publish__e</object>
         <triggerType>PlatformEvent</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
 </Flow>
