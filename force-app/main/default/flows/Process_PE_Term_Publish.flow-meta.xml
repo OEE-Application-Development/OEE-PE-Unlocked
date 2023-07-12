@@ -4,7 +4,7 @@
         <name>Get_Institution_Record_Type</name>
         <label>Get Institution Record Type</label>
         <locationX>242</locationX>
-        <locationY>674</locationY>
+        <locationY>602</locationY>
         <actionName>PERecordTypeRequestor</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -23,7 +23,7 @@
         <name>Get_Noncredit_Term_RecordType</name>
         <label>Get Noncredit Term RecordType</label>
         <locationX>374</locationX>
-        <locationY>314</locationY>
+        <locationY>278</locationY>
         <actionName>PERecordTypeRequestor</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -42,7 +42,7 @@
         <name>Get_PE_Account</name>
         <label>Get CSUOEE Institution</label>
         <locationX>242</locationX>
-        <locationY>794</locationY>
+        <locationY>710</locationY>
         <actionName>AccountRequestor</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -68,7 +68,7 @@
         <name>Does_Term_Exist</name>
         <label>Does Term Exist?</label>
         <locationX>374</locationX>
-        <locationY>554</locationY>
+        <locationY>494</locationY>
         <defaultConnector>
             <targetReference>Update_Term</targetReference>
         </defaultConnector>
@@ -93,7 +93,7 @@
         <name>Is_Credit</name>
         <label>Is Credit?</label>
         <locationX>176</locationX>
-        <locationY>194</locationY>
+        <locationY>170</locationY>
         <defaultConnector>
             <targetReference>Get_Noncredit_Term_RecordType</targetReference>
         </defaultConnector>
@@ -115,7 +115,7 @@
     <formulas>
         <name>TermNameToReference</name>
         <dataType>String</dataType>
-        <expression>RIGHT({!$Record.csuoee__Term_Name__c}, FIND(&apos; &apos;, {!$Record.csuoee__Term_Name__c}))&amp;CASE(LEFT({!$Record.csuoee__Term_Name__c}, FIND(&apos; &apos;, {!$Record.csuoee__Term_Name__c})), &apos;Spring&apos;, &apos;SP&apos;, &apos;Summer&apos;, &apos;SM&apos;, &apos;FA&apos;)&amp;&apos;-NCT&apos;</expression>
+        <expression>RIGHT({!$Record.csuoee__Term_Name__c}, FIND(&apos; &apos;, {!$Record.csuoee__Term_Name__c}))&amp;CASE(LEFT({!$Record.csuoee__Term_Name__c}, FIND(&apos; &apos;, {!$Record.csuoee__Term_Name__c})), &apos;Spring &apos;, &apos;SP&apos;, &apos;Summer &apos;, &apos;SM&apos;, &apos;FA&apos;)&amp;&apos;-NCT&apos;</expression>
     </formulas>
     <interviewLabel>Process PE Term Publish {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Process PE Term Publish</label>
@@ -142,7 +142,7 @@
         <name>Create_Term</name>
         <label>Create Term</label>
         <locationX>242</locationX>
-        <locationY>914</locationY>
+        <locationY>818</locationY>
         <inputAssignments>
             <field>Is_Visible__c</field>
             <value>
@@ -192,7 +192,7 @@
         <name>Get_Noncredit_Term</name>
         <label>Get Noncredit Term</label>
         <locationX>374</locationX>
-        <locationY>434</locationY>
+        <locationY>386</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Does_Term_Exist</targetReference>
@@ -213,7 +213,7 @@
         <name>Update_Term</name>
         <label>Update Term</label>
         <locationX>506</locationX>
-        <locationY>674</locationY>
+        <locationY>602</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
