@@ -4,7 +4,7 @@
         <name>Get_CSUOEE_Dept</name>
         <label>Get CSUOEE Dept</label>
         <locationX>798</locationX>
-        <locationY>914</locationY>
+        <locationY>818</locationY>
         <actionName>AccountRequestor</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -29,7 +29,7 @@
         <name>Get_Department_Record_Type</name>
         <label>Get Department Record Type</label>
         <locationX>798</locationX>
-        <locationY>794</locationY>
+        <locationY>710</locationY>
         <actionName>PERecordTypeRequestor</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -48,7 +48,7 @@
         <name>Get_Instructor_Enrollment_RecordType</name>
         <label>Get Instructor Enrollment RecordType</label>
         <locationX>314</locationX>
-        <locationY>3674</locationY>
+        <locationY>3290</locationY>
         <actionName>PERecordTypeRequestor</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -70,7 +70,7 @@
         <name>Get_Noncredit_Term_RecordType</name>
         <label>Get Noncredit Term RecordType</label>
         <locationX>710</locationX>
-        <locationY>434</locationY>
+        <locationY>386</locationY>
         <actionName>PERecordTypeRequestor</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -93,7 +93,7 @@
         <name>Set_Course_Offering_Fields</name>
         <label>Set Course Offering Fields</label>
         <locationX>974</locationX>
-        <locationY>2954</locationY>
+        <locationY>2642</locationY>
         <assignmentItems>
             <assignToReference>Get_Course_Offering.hed__Capacity__c</assignToReference>
             <operator>Assign</operator>
@@ -126,7 +126,7 @@
             <assignToReference>Get_Course_Offering.hed__Facility__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>FacilityId</elementReference>
+                <elementReference>IfPresentFacultyId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -140,7 +140,7 @@
             <assignToReference>Get_Course_Offering.hed__Faculty__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>FacultyId</elementReference>
+                <elementReference>IfPresentFacultyId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -207,7 +207,7 @@
         <name>Create_Instructor_Enrollment_if_Faculty_Found</name>
         <label>Create Instructor Enrollment if Faculty Found</label>
         <locationX>710</locationX>
-        <locationY>3554</locationY>
+        <locationY>3182</locationY>
         <defaultConnectorLabel>Faculty Missing</defaultConnectorLabel>
         <rules>
             <name>Faculty_Exists</name>
@@ -217,6 +217,13 @@
                 <operator>WasVisited</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Course_Offering.hed__Faculty__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -229,7 +236,7 @@
         <name>Create_or_Update_Check</name>
         <label>Create or Update Check</label>
         <locationX>710</locationX>
-        <locationY>2834</locationY>
+        <locationY>2534</locationY>
         <defaultConnector>
             <targetReference>Set_Course_Offering_Fields</targetReference>
         </defaultConnector>
@@ -254,7 +261,7 @@
         <name>Delivery_Decision</name>
         <label>Delivery Decision</label>
         <locationX>710</locationX>
-        <locationY>1370</locationY>
+        <locationY>1226</locationY>
         <defaultConnector>
             <targetReference>Get_Building</targetReference>
         </defaultConnector>
@@ -293,7 +300,7 @@
         <name>Does_Building_Require_Create</name>
         <label>Does Building Require Create?</label>
         <locationX>908</locationX>
-        <locationY>1610</locationY>
+        <locationY>1442</locationY>
         <defaultConnector>
             <targetReference>Faculty_has_CSU_ID</targetReference>
         </defaultConnector>
@@ -318,7 +325,7 @@
         <name>Does_Primary_Instructor_Enrollment_Exist</name>
         <label>Does Primary Instructor Enrollment Exist?</label>
         <locationX>314</locationX>
-        <locationY>3914</locationY>
+        <locationY>3506</locationY>
         <defaultConnector>
             <targetReference>Create_Primary_Instructor_Enrollment</targetReference>
         </defaultConnector>
@@ -343,7 +350,7 @@
         <name>Does_Term_Exist</name>
         <label>Does Term Exist?</label>
         <locationX>710</locationX>
-        <locationY>674</locationY>
+        <locationY>602</locationY>
         <defaultConnector>
             <targetReference>Get_Department_Record_Type</targetReference>
         </defaultConnector>
@@ -368,7 +375,7 @@
         <name>Faculty_has_CSU_ID</name>
         <label>Faculty has CSU ID?</label>
         <locationX>710</locationX>
-        <locationY>2162</locationY>
+        <locationY>1934</locationY>
         <defaultConnector>
             <targetReference>Is_Cross_Listing_Set</targetReference>
         </defaultConnector>
@@ -393,7 +400,7 @@
         <name>Is_Cross_Listing_Set</name>
         <label>Is Cross Listing Set?</label>
         <locationX>710</locationX>
-        <locationY>2498</locationY>
+        <locationY>2234</locationY>
         <defaultConnector>
             <targetReference>Get_Cross_List_Course</targetReference>
         </defaultConnector>
@@ -422,7 +429,7 @@
         <name>Is_this_Course_Noncredit</name>
         <label>Is this Course Noncredit?</label>
         <locationX>1106</locationX>
-        <locationY>314</locationY>
+        <locationY>278</locationY>
         <defaultConnectorLabel>Credit</defaultConnectorLabel>
         <rules>
             <name>Noncredit</name>
@@ -451,6 +458,11 @@
         <dataType>String</dataType>
         <expression>LEFT({!$Record.csuoee__Section_Reference__c}, 6)&amp;&apos;-NCT&apos;</expression>
     </formulas>
+    <formulas>
+        <name>IfPresentFacultyId</name>
+        <dataType>String</dataType>
+        <expression>IF(LEN({!FacultyId}) == 0,{!Get_Course_Offering.hed__Faculty__c},{!FacultyId})</expression>
+    </formulas>
     <interviewLabel>Process PE Section Publish {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Process PE Section Publish</label>
     <processMetadataValues>
@@ -476,7 +488,7 @@
         <name>Create_Building</name>
         <label>Create Building</label>
         <locationX>776</locationX>
-        <locationY>1850</locationY>
+        <locationY>1658</locationY>
         <assignRecordIdToReference>FacilityId</assignRecordIdToReference>
         <connector>
             <targetReference>Faculty_has_CSU_ID</targetReference>
@@ -505,7 +517,7 @@
         <name>Create_Course_Offering</name>
         <label>Create Course Offering</label>
         <locationX>446</locationX>
-        <locationY>2954</locationY>
+        <locationY>2642</locationY>
         <assignRecordIdToReference>OfferingId</assignRecordIdToReference>
         <connector>
             <targetReference>Create_Instructor_Enrollment_if_Faculty_Found</targetReference>
@@ -579,7 +591,7 @@
         <name>Create_Instructor_Enrollment_Create_Error</name>
         <label>Create Instructor Enrollment Create Error</label>
         <locationX>842</locationX>
-        <locationY>4154</locationY>
+        <locationY>3722</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -611,7 +623,7 @@
         <name>Create_Instructor_Enrollment_Update_Error</name>
         <label>Create Instructor Enrollment Update Error</label>
         <locationX>314</locationX>
-        <locationY>4154</locationY>
+        <locationY>3722</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -643,7 +655,7 @@
         <name>Create_Primary_Instructor_Enrollment</name>
         <label>Create Primary Instructor Enrollment</label>
         <locationX>578</locationX>
-        <locationY>4034</locationY>
+        <locationY>3614</locationY>
         <faultConnector>
             <targetReference>Create_Instructor_Enrollment_Create_Error</targetReference>
         </faultConnector>
@@ -684,7 +696,7 @@
         <name>Create_Section_Create_Error</name>
         <label>Create Section Create Error</label>
         <locationX>710</locationX>
-        <locationY>3074</locationY>
+        <locationY>2750</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -716,7 +728,7 @@
         <name>Create_Section_Update_Error</name>
         <label>Create Section Update Error</label>
         <locationX>1238</locationX>
-        <locationY>3194</locationY>
+        <locationY>2858</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -748,7 +760,7 @@
         <name>Create_Term</name>
         <label>Create Term</label>
         <locationX>798</locationX>
-        <locationY>1034</locationY>
+        <locationY>926</locationY>
         <assignRecordIdToReference>Get_Term.Id</assignRecordIdToReference>
         <connector>
             <targetReference>Get_Course_Offering</targetReference>
@@ -789,7 +801,7 @@
         <name>Find_Primary_Instructor_on_Section</name>
         <label>Find Primary Instructor on Section</label>
         <locationX>314</locationX>
-        <locationY>3794</locationY>
+        <locationY>3398</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Does_Primary_Instructor_Enrollment_Exist</targetReference>
@@ -826,7 +838,7 @@
         <name>Get_Building</name>
         <label>Get Building</label>
         <locationX>908</locationX>
-        <locationY>1490</locationY>
+        <locationY>1334</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Does_Building_Require_Create</targetReference>
@@ -856,7 +868,7 @@
         <name>Get_Canvas_Facility</name>
         <label>Get Canvas Facility</label>
         <locationX>512</locationX>
-        <locationY>1490</locationY>
+        <locationY>1334</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Faculty_has_CSU_ID</targetReference>
@@ -879,7 +891,7 @@
         <name>Get_Course</name>
         <label>Get Course</label>
         <locationX>1106</locationX>
-        <locationY>194</locationY>
+        <locationY>170</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_this_Course_Noncredit</targetReference>
@@ -900,7 +912,7 @@
         <name>Get_Course_Offering</name>
         <label>Get Course Offering</label>
         <locationX>710</locationX>
-        <locationY>1250</locationY>
+        <locationY>1118</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Delivery_Decision</targetReference>
@@ -935,7 +947,7 @@
         <name>Get_Cross_List_Course</name>
         <label>Get Cross List Course</label>
         <locationX>798</locationX>
-        <locationY>2618</locationY>
+        <locationY>2342</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_or_Update_Check</targetReference>
@@ -956,7 +968,7 @@
         <name>Get_CSU_by_School_Code</name>
         <label>Get CSU by School Code</label>
         <locationX>776</locationX>
-        <locationY>1730</locationY>
+        <locationY>1550</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Building</targetReference>
@@ -978,7 +990,7 @@
         <name>Get_Term</name>
         <label>Get Term</label>
         <locationX>710</locationX>
-        <locationY>554</locationY>
+        <locationY>494</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Does_Term_Exist</targetReference>
@@ -1006,7 +1018,7 @@
         <name>Lookup_Faculty_Contact</name>
         <label>Lookup Faculty Contact</label>
         <locationX>578</locationX>
-        <locationY>2282</locationY>
+        <locationY>2042</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Cross_Listing_Set</targetReference>
@@ -1029,7 +1041,7 @@
         <name>Update_Contact_on_Enrollment</name>
         <label>Update Contact on Enrollment</label>
         <locationX>50</locationX>
-        <locationY>4034</locationY>
+        <locationY>3614</locationY>
         <faultConnector>
             <targetReference>Create_Instructor_Enrollment_Update_Error</targetReference>
         </faultConnector>
@@ -1053,7 +1065,7 @@
         <name>Update_Course_Offering</name>
         <label>Update Course Offering</label>
         <locationX>974</locationX>
-        <locationY>3074</locationY>
+        <locationY>2750</locationY>
         <connector>
             <targetReference>Create_Instructor_Enrollment_if_Faculty_Found</targetReference>
         </connector>
