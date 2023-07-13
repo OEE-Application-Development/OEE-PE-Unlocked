@@ -144,6 +144,12 @@
         <locationX>242</locationX>
         <locationY>818</locationY>
         <inputAssignments>
+            <field>Display_Order__c</field>
+            <value>
+                <elementReference>$Record.Term_Order__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Is_Visible__c</field>
             <value>
                 <elementReference>$Record.Is_Visible__c</elementReference>
@@ -223,6 +229,12 @@
             </value>
         </filters>
         <inputAssignments>
+            <field>Display_Order__c</field>
+            <value>
+                <elementReference>$Record.Term_Order__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Is_Visible__c</field>
             <value>
                 <elementReference>$Record.Is_Visible__c</elementReference>
@@ -245,5 +257,5 @@
         <object>Term_Publish__e</object>
         <triggerType>PlatformEvent</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
 </Flow>
