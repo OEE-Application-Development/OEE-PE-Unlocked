@@ -61,4 +61,40 @@ private class PEEvent_TEST {
         System.assert(responses.get(0).success);
     }
 
+    @IsTest
+    private static void registrationBatchTest() {
+        Contact s1 = new Contact(LastName = 'Test1', Email = 'Test1@fake.edu');
+        Contact s2 = new Contact(LastName = 'Test2', Email = 'Test2@fake.edu');
+
+        insert new List<Contact>{s1, s2};
+
+        Account department = new Account(Name = 'Department');
+        insert department;
+
+        hed__Term__c term = new hed__Term__c(hed__Account__c = department.Id, Name = '2023SP');
+        insert term;
+
+        hed__Course__c course = new hed__Course__c(Name = 'CO 333', hed__Course_ID__c = 'CO 333', csuoee__Course_Code__c = 'CO 333', hed__Account__c = department.Id);
+        insert course;
+
+        hed__Course_Offering__c offering = new hed__Course_Offering__c(Name = 'CO 333 100', hed__Section_ID__c = '100', hed__Course__c = course.Id, hed__Term__c = term.Id);
+        insert offering;
+
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, BaseTestUtil.getEventCalloutMock());
+        csuoee__Registration_Batch__c batch = new csuoee__Registration_Batch__c(csuoee__Default_Transfer__c = 1);
+        insert batch;
+
+        csuoee__Registration_Request__c r1 = new csuoee__Registration_Request__c(csuoee__Registration_Batch__c = batch.Id, csuoee__Student__c = s1.Id, csuoee__Course_Offering__c = offering.Id);
+        csuoee__Registration_Request__c r2 = new csuoee__Registration_Request__c(csuoee__Registration_Batch__c = batch.Id, csuoee__Student__c = s2.Id, csuoee__Course_Offering__c = offering.Id);
+        insert new List<csuoee__Registration_Request__c>{r1, r2};
+
+        batch.csuoee__Is_Ready__c = true;
+        update batch;
+
+        Test.stopTest();
+
+        System.assert(true);
+    }
+
 }

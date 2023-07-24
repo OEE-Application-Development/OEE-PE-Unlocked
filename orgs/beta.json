@@ -1,6 +1,7 @@
 {
   "orgName": "OEE-PE-Unlocked - Beta Test Org",
-  "edition": "Developer",
+  "sourceOrg": "00D6g000002hydVEAQ",
+  "features": ["SharedActivities"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
@@ -16,5 +17,14 @@
       "sessionSettings": {
         "forceRelogin": false
       }
-    }  }
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true
+    }
+  },
+  "objectSettings": {
+    "account": {
+      "defaultRecordType": "Administrative"
+    }
+  }
 }
