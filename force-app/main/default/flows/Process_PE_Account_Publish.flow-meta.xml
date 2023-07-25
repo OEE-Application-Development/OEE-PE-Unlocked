@@ -2,6 +2,22 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>56.0</apiVersion>
     <assignments>
+        <name>Set_Noncredit_ID_for_Email</name>
+        <label>Set Noncredit ID for Email</label>
+        <locationX>1634</locationX>
+        <locationY>710</locationY>
+        <assignmentItems>
+            <assignToReference>ContactToUpdate.Noncredit_ID__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Noncredit_ID__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Contact_Fields</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Update_Company_Fields</name>
         <label>Update Company Fields</label>
         <locationX>50</locationX>
@@ -55,7 +71,7 @@
     <assignments>
         <name>Update_Contact_Fields</name>
         <label>Update Contact Fields</label>
-        <locationX>1590</locationX>
+        <locationX>1634</locationX>
         <locationY>1226</locationY>
         <assignmentItems>
             <assignToReference>ContactToUpdate.Birthdate</assignToReference>
@@ -130,7 +146,7 @@
         <locationX>1370</locationX>
         <locationY>602</locationY>
         <defaultConnector>
-            <targetReference>Update_Contact_Fields</targetReference>
+            <targetReference>Set_Noncredit_ID_for_Email</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Email Present</defaultConnectorLabel>
         <rules>
@@ -177,7 +193,7 @@
     <decisions>
         <name>Is_this_a_Company_Account</name>
         <label>Is this a Company Account?</label>
-        <locationX>952</locationX>
+        <locationX>974</locationX>
         <locationY>170</locationY>
         <defaultConnector>
             <targetReference>Get_Contact_By_Noncredit_Id</targetReference>
@@ -202,7 +218,7 @@
     <decisions>
         <name>Noncredit_ID_Exists</name>
         <label>Noncredit ID Exists?</label>
-        <locationX>1590</locationX>
+        <locationX>1634</locationX>
         <locationY>386</locationY>
         <defaultConnector>
             <targetReference>Update_Contact_Fields</targetReference>
@@ -550,7 +566,7 @@
     <recordCreates>
         <name>Create_Contact_Update_Error</name>
         <label>Create Contact Update Error</label>
-        <locationX>1986</locationX>
+        <locationX>2074</locationX>
         <locationY>1442</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
@@ -670,7 +686,7 @@
     <recordLookups>
         <name>Get_Contact_By_Noncredit_Id</name>
         <label>Get Contact By Noncredit Id</label>
-        <locationX>1590</locationX>
+        <locationX>1634</locationX>
         <locationY>278</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -722,7 +738,7 @@
     <recordUpdates>
         <name>Run_Contact_Update</name>
         <label>Run Contact Update</label>
-        <locationX>1590</locationX>
+        <locationX>1634</locationX>
         <locationY>1334</locationY>
         <faultConnector>
             <targetReference>Create_Contact_Update_Error</targetReference>
@@ -740,7 +756,7 @@
         <inputReference>Lookup_Business_Account</inputReference>
     </recordUpdates>
     <start>
-        <locationX>826</locationX>
+        <locationX>848</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Is_this_a_Company_Account</targetReference>
