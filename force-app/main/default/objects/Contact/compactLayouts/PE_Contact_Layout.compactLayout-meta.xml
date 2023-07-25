@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PE_Contact_Layout</fullName>
+    <fields>Name</fields>
+    <fields>Noncredit_ID__c</fields>
+    <fields>Primary_Canvas_Username__c</fields>
+    <fields>Email</fields>
+    <fields>CSU_Online_Account_Email__c</fields>
+    <fields>CSU_ID__c</fields>
+    <label>PE Contact Layout</label>
+</CompactLayout>

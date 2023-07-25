@@ -62,6 +62,16 @@
                 <identifier>RecordNoncredit_ID_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Primary_Canvas_Username__c</fieldItem>
+                <identifier>Recordcsuoee_Primary_Canvas_Username_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-30fe79e1-46e1-450e-8dfa-510c279e995e</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -285,6 +295,10 @@
                     <value>Facet-70d7f7c9-3d70-4971-99c8-dc7254e7fbba</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Contact Information</value>
                 </componentInstanceProperties>
@@ -299,6 +313,10 @@
                     <value>Facet-a03cf3d7-38b7-48a9-a684-3b46fe1926c6</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Address Information</value>
                 </componentInstanceProperties>
@@ -311,6 +329,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-6c5de9e0-1b4f-4e9d-8d41-c98b7f4b8788</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
