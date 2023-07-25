@@ -2,10 +2,26 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>56.0</apiVersion>
     <assignments>
+        <name>Set_Noncredit_ID_for_Email</name>
+        <label>Set Noncredit ID for Email</label>
+        <locationX>1634</locationX>
+        <locationY>710</locationY>
+        <assignmentItems>
+            <assignToReference>ContactToUpdate.Noncredit_ID__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Noncredit_ID__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Contact_Fields</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Update_Company_Fields</name>
         <label>Update Company Fields</label>
         <locationX>50</locationX>
-        <locationY>554</locationY>
+        <locationY>494</locationY>
         <assignmentItems>
             <assignToReference>Lookup_Business_Account.Name</assignToReference>
             <operator>Assign</operator>
@@ -55,8 +71,8 @@
     <assignments>
         <name>Update_Contact_Fields</name>
         <label>Update Contact Fields</label>
-        <locationX>1590</locationX>
-        <locationY>1370</locationY>
+        <locationX>1634</locationX>
+        <locationY>1226</locationY>
         <assignmentItems>
             <assignToReference>ContactToUpdate.Birthdate</assignToReference>
             <operator>Assign</operator>
@@ -128,9 +144,9 @@
         <name>Contact_Email_Exists</name>
         <label>Contact Email Exists?</label>
         <locationX>1370</locationX>
-        <locationY>674</locationY>
+        <locationY>602</locationY>
         <defaultConnector>
-            <targetReference>Update_Contact_Fields</targetReference>
+            <targetReference>Set_Noncredit_ID_for_Email</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Email Present</defaultConnectorLabel>
         <rules>
@@ -153,7 +169,7 @@
         <name>Does_Company_Already_Exist</name>
         <label>Does Company Already Exist?</label>
         <locationX>314</locationX>
-        <locationY>434</locationY>
+        <locationY>386</locationY>
         <defaultConnector>
             <targetReference>Get_Business_Organization_RecordTypeId</targetReference>
         </defaultConnector>
@@ -177,8 +193,8 @@
     <decisions>
         <name>Is_this_a_Company_Account</name>
         <label>Is this a Company Account?</label>
-        <locationX>952</locationX>
-        <locationY>194</locationY>
+        <locationX>974</locationX>
+        <locationY>170</locationY>
         <defaultConnector>
             <targetReference>Get_Contact_By_Noncredit_Id</targetReference>
         </defaultConnector>
@@ -202,8 +218,8 @@
     <decisions>
         <name>Noncredit_ID_Exists</name>
         <label>Noncredit ID Exists?</label>
-        <locationX>1590</locationX>
-        <locationY>434</locationY>
+        <locationX>1634</locationX>
+        <locationY>386</locationY>
         <defaultConnector>
             <targetReference>Update_Contact_Fields</targetReference>
         </defaultConnector>
@@ -295,7 +311,7 @@
         <name>Create_Business_Account</name>
         <label>Create Business Account</label>
         <locationX>578</locationX>
-        <locationY>674</locationY>
+        <locationY>602</locationY>
         <faultConnector>
             <targetReference>Create_Company_Account_Create_Error</targetReference>
         </faultConnector>
@@ -354,7 +370,7 @@
         <name>Create_Company_Account_Create_Error</name>
         <label>Create Company Account Create Error</label>
         <locationX>842</locationX>
-        <locationY>794</locationY>
+        <locationY>710</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -386,7 +402,7 @@
         <name>Create_Company_Account_Update_Error</name>
         <label>Create Company Account Update Error</label>
         <locationX>314</locationX>
-        <locationY>794</locationY>
+        <locationY>710</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -418,7 +434,7 @@
         <name>Create_Contact_Create_Error</name>
         <label>Create Contact Create Error</label>
         <locationX>1370</locationX>
-        <locationY>914</locationY>
+        <locationY>818</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -450,7 +466,7 @@
         <name>Create_Contact_Record</name>
         <label>Create Contact Record</label>
         <locationX>1106</locationX>
-        <locationY>794</locationY>
+        <locationY>710</locationY>
         <faultConnector>
             <targetReference>Create_Contact_Create_Error</targetReference>
         </faultConnector>
@@ -550,8 +566,8 @@
     <recordCreates>
         <name>Create_Contact_Update_Error</name>
         <label>Create Contact Update Error</label>
-        <locationX>1986</locationX>
-        <locationY>1610</locationY>
+        <locationX>2074</locationX>
+        <locationY>1442</locationY>
         <inputAssignments>
             <field>hed__Error_Type__c</field>
             <value>
@@ -583,7 +599,7 @@
         <name>Get_Business_Organization_RecordTypeId</name>
         <label>Get Business_Organization RecordTypeId</label>
         <locationX>578</locationX>
-        <locationY>554</locationY>
+        <locationY>494</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Business_Account</targetReference>
@@ -612,7 +628,7 @@
         <name>Get_Contact_By_Email</name>
         <label>Get Contact By Email</label>
         <locationX>1370</locationX>
-        <locationY>554</locationY>
+        <locationY>494</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Contact_Email_Exists</targetReference>
@@ -656,12 +672,22 @@
         <object>Contact</object>
         <outputReference>ContactToUpdate</outputReference>
         <queriedFields>Id</queriedFields>
+        <queriedFields>MailingAddress</queriedFields>
+        <queriedFields>Birthdate</queriedFields>
+        <queriedFields>MailingCity</queriedFields>
+        <queriedFields>MailingCountry</queriedFields>
+        <queriedFields>Email</queriedFields>
+        <queriedFields>HomePhone</queriedFields>
+        <queriedFields>CSU_Online_Account_Email__c</queriedFields>
+        <queriedFields>MailingState</queriedFields>
+        <queriedFields>MailingPostalCode</queriedFields>
+        <queriedFields>hed__PreferredPhone__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Contact_By_Noncredit_Id</name>
         <label>Get Contact By Noncredit Id</label>
-        <locationX>1590</locationX>
-        <locationY>314</locationY>
+        <locationX>1634</locationX>
+        <locationY>278</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Noncredit_ID_Exists</targetReference>
@@ -677,12 +703,22 @@
         <object>Contact</object>
         <outputReference>ContactToUpdate</outputReference>
         <queriedFields>Id</queriedFields>
+        <queriedFields>MailingAddress</queriedFields>
+        <queriedFields>Birthdate</queriedFields>
+        <queriedFields>MailingCity</queriedFields>
+        <queriedFields>MailingCountry</queriedFields>
+        <queriedFields>Email</queriedFields>
+        <queriedFields>HomePhone</queriedFields>
+        <queriedFields>CSU_Online_Account_Email__c</queriedFields>
+        <queriedFields>MailingState</queriedFields>
+        <queriedFields>MailingPostalCode</queriedFields>
+        <queriedFields>hed__PreferredPhone__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Lookup_Business_Account</name>
         <label>Lookup Business Account</label>
         <locationX>314</locationX>
-        <locationY>314</locationY>
+        <locationY>278</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Does_Company_Already_Exist</targetReference>
@@ -702,8 +738,8 @@
     <recordUpdates>
         <name>Run_Contact_Update</name>
         <label>Run Contact Update</label>
-        <locationX>1590</locationX>
-        <locationY>1490</locationY>
+        <locationX>1634</locationX>
+        <locationY>1334</locationY>
         <faultConnector>
             <targetReference>Create_Contact_Update_Error</targetReference>
         </faultConnector>
@@ -713,14 +749,14 @@
         <name>Update_Company_Account</name>
         <label>Update Company Account</label>
         <locationX>50</locationX>
-        <locationY>674</locationY>
+        <locationY>602</locationY>
         <faultConnector>
             <targetReference>Create_Company_Account_Update_Error</targetReference>
         </faultConnector>
         <inputReference>Lookup_Business_Account</inputReference>
     </recordUpdates>
     <start>
-        <locationX>826</locationX>
+        <locationX>848</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Is_this_a_Company_Account</targetReference>

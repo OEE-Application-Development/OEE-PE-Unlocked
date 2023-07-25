@@ -74,7 +74,8 @@ private class PEEvent_TEST {
         hed__Term__c term = new hed__Term__c(hed__Account__c = department.Id, Name = '2023SP');
         insert term;
 
-        hed__Course__c course = new hed__Course__c(Name = 'CO 333', hed__Course_ID__c = 'CO 333', csuoee__Course_Code__c = 'CO 333', hed__Account__c = department.Id);
+        RecordType rt = [select Id from RecordType where NamespacePrefix = 'csuoee' and DeveloperName = 'Credit' LIMIT 1];
+        hed__Course__c course = new hed__Course__c(Name = 'CO 333', hed__Course_ID__c = 'CO 333', csuoee__Course_Code__c = 'CO 333', hed__Account__c = department.Id, RecordTypeId = rt.Id);
         insert course;
 
         hed__Course_Offering__c offering = new hed__Course_Offering__c(Name = 'CO 333 100', hed__Section_ID__c = '100', hed__Course__c = course.Id, hed__Term__c = term.Id);
