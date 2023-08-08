@@ -7,7 +7,7 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 68,
+            "duration": 59,
             "TESTING_LIMITS: Number of SOQL queries": {
                 "used": 0,
                 "allowed": 100
@@ -49,7 +49,7 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:09:51.000+0000"
+        "TestTimestamp": "2023-07-25T22:58:30.000+0000"
     },
     {
         "Children": null,
@@ -59,7 +59,7 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 1660,
+            "duration": 823,
             "TESTING_LIMITS: Number of SOQL queries": {
                 "used": 2,
                 "allowed": 100
@@ -77,7 +77,7 @@
                 "allowed": 10000
             },
             "TESTING_LIMITS: Maximum CPU time": {
-                "used": 587,
+                "used": 437,
                 "allowed": 10000
             },
             "TESTING_LIMITS: Number of query rows": {
@@ -101,7 +101,7 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:12:07.000+0000"
+        "TestTimestamp": "2023-07-25T23:00:40.000+0000"
     },
     {
         "Children": null,
@@ -111,7 +111,7 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 14,
+            "duration": 13,
             "TESTING_LIMITS: Number of SOQL queries": {
                 "used": 0,
                 "allowed": 100
@@ -153,7 +153,7 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:12:09.000+0000"
+        "TestTimestamp": "2023-07-25T23:00:41.000+0000"
     },
     {
         "Children": null,
@@ -163,7 +163,7 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 4721,
+            "duration": 3981,
             "TESTING_LIMITS: Number of SOQL queries": {
                 "used": 8,
                 "allowed": 100
@@ -181,7 +181,7 @@
                 "allowed": 10000
             },
             "TESTING_LIMITS: Maximum CPU time": {
-                "used": 661,
+                "used": 668,
                 "allowed": 10000
             },
             "TESTING_LIMITS: Number of query rows": {
@@ -205,7 +205,7 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:09:51.000+0000"
+        "TestTimestamp": "2023-07-25T22:58:31.000+0000"
     },
     {
         "Children": null,
@@ -215,9 +215,9 @@
         "Outcome": "Fail",
         "StackTrace": null,
         "Stats": {
-            "duration": 1029
+            "duration": 886
         },
-        "TestTimestamp": "2023-07-25T14:12:03.000+0000"
+        "TestTimestamp": "2023-07-25T22:58:48.000+0000"
     },
     {
         "Children": null,
@@ -227,7 +227,7 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 17,
+            "duration": 13,
             "TESTING_LIMITS: Number of SOQL queries": {
                 "used": 1,
                 "allowed": 100
@@ -269,7 +269,7 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:12:04.000+0000"
+        "TestTimestamp": "2023-07-25T22:58:50.000+0000"
     },
     {
         "Children": null,
@@ -279,7 +279,7 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 1264,
+            "duration": 1032,
             "TESTING_LIMITS: Number of SOQL queries": {
                 "used": 16,
                 "allowed": 100
@@ -297,7 +297,7 @@
                 "allowed": 10000
             },
             "TESTING_LIMITS: Maximum CPU time": {
-                "used": 397,
+                "used": 332,
                 "allowed": 10000
             },
             "TESTING_LIMITS: Number of query rows": {
@@ -321,7 +321,7 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:12:04.000+0000"
+        "TestTimestamp": "2023-07-25T22:58:51.000+0000"
     },
     {
         "Children": null,
@@ -331,9 +331,9 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 2096
+            "duration": 2145
         },
-        "TestTimestamp": "2023-07-25T14:12:06.000+0000"
+        "TestTimestamp": "2023-07-25T22:58:53.000+0000"
     },
     {
         "Children": null,
@@ -343,7 +343,7 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 2504,
+            "duration": 1964,
             "TESTING_LIMITS: Number of SOQL queries": {
                 "used": 1,
                 "allowed": 100
@@ -361,7 +361,7 @@
                 "allowed": 10000
             },
             "TESTING_LIMITS: Maximum CPU time": {
-                "used": 1354,
+                "used": 1086,
                 "allowed": 10000
             },
             "TESTING_LIMITS: Number of query rows": {
@@ -385,7 +385,7 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:12:08.000+0000"
+        "TestTimestamp": "2023-07-25T22:58:56.000+0000"
     },
     {
         "Children": null,
@@ -395,9 +395,9 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 199
+            "duration": 177
         },
-        "TestTimestamp": "2023-07-25T14:12:11.000+0000"
+        "TestTimestamp": "2023-07-25T22:58:59.000+0000"
     },
     {
         "Children": null,
@@ -407,7 +407,7 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 109,
+            "duration": 124,
             "TESTING_LIMITS: Number of SOQL queries": {
                 "used": 0,
                 "allowed": 100
@@ -449,7 +449,7 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:12:11.000+0000"
+        "TestTimestamp": "2023-07-25T22:59:00.000+0000"
     },
     {
         "Children": null,
@@ -459,9 +459,9 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 9
+            "duration": 22
         },
-        "TestTimestamp": "2023-07-25T14:10:12.000+0000"
+        "TestTimestamp": "2023-07-25T22:58:31.000+0000"
     },
     {
         "Children": null,
@@ -471,9 +471,9 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 5
+            "duration": 8
         },
-        "TestTimestamp": "2023-07-25T14:10:15.000+0000"
+        "TestTimestamp": "2023-07-25T23:00:40.000+0000"
     },
     {
         "Children": null,
@@ -483,7 +483,7 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 53,
+            "duration": 41,
             "TESTING_LIMITS: Number of SOQL queries": {
                 "used": 0,
                 "allowed": 100
@@ -501,7 +501,7 @@
                 "allowed": 10000
             },
             "TESTING_LIMITS: Maximum CPU time": {
-                "used": 1,
+                "used": 0,
                 "allowed": 10000
             },
             "TESTING_LIMITS: Number of query rows": {
@@ -525,12 +525,116 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:09:51.000+0000"
+        "TestTimestamp": "2023-07-25T22:58:30.000+0000"
     },
     {
         "Children": null,
         "ClassName": "PEEvent_TEST",
         "Method": "enrollStudent",
+        "Message": null,
+        "Outcome": "Pass",
+        "StackTrace": null,
+        "Stats": {
+            "duration": 11,
+            "TESTING_LIMITS: Number of SOQL queries": {
+                "used": 0,
+                "allowed": 100
+            },
+            "TESTING_LIMITS: Number of Email Invocations": {
+                "used": 0,
+                "allowed": 10
+            },
+            "TESTING_LIMITS: Number of future calls": {
+                "used": 1,
+                "allowed": 50
+            },
+            "TESTING_LIMITS: Number of DML rows": {
+                "used": 0,
+                "allowed": 10000
+            },
+            "TESTING_LIMITS: Maximum CPU time": {
+                "used": 0,
+                "allowed": 10000
+            },
+            "TESTING_LIMITS: Number of query rows": {
+                "used": 0,
+                "allowed": 50000
+            },
+            "TESTING_LIMITS: Number of DML statements": {
+                "used": 0,
+                "allowed": 150
+            },
+            "TESTING_LIMITS: Number of Mobile Apex push calls": {
+                "used": 0,
+                "allowed": 10
+            },
+            "TESTING_LIMITS: Number of SOSL queries": {
+                "used": 0,
+                "allowed": 20
+            },
+            "TESTING_LIMITS: Number of callouts": {
+                "used": 0,
+                "allowed": 100
+            }
+        },
+        "TestTimestamp": "2023-07-25T23:00:40.000+0000"
+    },
+    {
+        "Children": null,
+        "ClassName": "PEEvent_TEST",
+        "Method": "lmsEnrollmentComplete",
+        "Message": null,
+        "Outcome": "Pass",
+        "StackTrace": null,
+        "Stats": {
+            "duration": 9,
+            "TESTING_LIMITS: Number of SOQL queries": {
+                "used": 0,
+                "allowed": 100
+            },
+            "TESTING_LIMITS: Number of Email Invocations": {
+                "used": 0,
+                "allowed": 10
+            },
+            "TESTING_LIMITS: Number of future calls": {
+                "used": 1,
+                "allowed": 50
+            },
+            "TESTING_LIMITS: Number of DML rows": {
+                "used": 0,
+                "allowed": 10000
+            },
+            "TESTING_LIMITS: Maximum CPU time": {
+                "used": 0,
+                "allowed": 10000
+            },
+            "TESTING_LIMITS: Number of query rows": {
+                "used": 0,
+                "allowed": 50000
+            },
+            "TESTING_LIMITS: Number of DML statements": {
+                "used": 0,
+                "allowed": 150
+            },
+            "TESTING_LIMITS: Number of Mobile Apex push calls": {
+                "used": 0,
+                "allowed": 10
+            },
+            "TESTING_LIMITS: Number of SOSL queries": {
+                "used": 0,
+                "allowed": 20
+            },
+            "TESTING_LIMITS: Number of callouts": {
+                "used": 0,
+                "allowed": 100
+            }
+        },
+        "TestTimestamp": "2023-07-25T23:00:41.000+0000"
+    },
+    {
+        "Children": null,
+        "ClassName": "PEEvent_TEST",
+        "Method": "lmsEnrollmentRequest",
         "Message": null,
         "Outcome": "Pass",
         "StackTrace": null,
@@ -553,58 +657,6 @@
                 "allowed": 10000
             },
             "TESTING_LIMITS: Maximum CPU time": {
-                "used": 1,
-                "allowed": 10000
-            },
-            "TESTING_LIMITS: Number of query rows": {
-                "used": 0,
-                "allowed": 50000
-            },
-            "TESTING_LIMITS: Number of DML statements": {
-                "used": 0,
-                "allowed": 150
-            },
-            "TESTING_LIMITS: Number of Mobile Apex push calls": {
-                "used": 0,
-                "allowed": 10
-            },
-            "TESTING_LIMITS: Number of SOSL queries": {
-                "used": 0,
-                "allowed": 20
-            },
-            "TESTING_LIMITS: Number of callouts": {
-                "used": 0,
-                "allowed": 100
-            }
-        },
-        "TestTimestamp": "2023-07-25T14:12:04.000+0000"
-    },
-    {
-        "Children": null,
-        "ClassName": "PEEvent_TEST",
-        "Method": "lmsEnrollmentComplete",
-        "Message": null,
-        "Outcome": "Pass",
-        "StackTrace": null,
-        "Stats": {
-            "duration": 12,
-            "TESTING_LIMITS: Number of SOQL queries": {
-                "used": 0,
-                "allowed": 100
-            },
-            "TESTING_LIMITS: Number of Email Invocations": {
-                "used": 0,
-                "allowed": 10
-            },
-            "TESTING_LIMITS: Number of future calls": {
-                "used": 1,
-                "allowed": 50
-            },
-            "TESTING_LIMITS: Number of DML rows": {
-                "used": 0,
-                "allowed": 10000
-            },
-            "TESTING_LIMITS: Maximum CPU time": {
                 "used": 0,
                 "allowed": 10000
             },
@@ -629,59 +681,7 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:12:04.000+0000"
-    },
-    {
-        "Children": null,
-        "ClassName": "PEEvent_TEST",
-        "Method": "lmsEnrollmentRequest",
-        "Message": null,
-        "Outcome": "Pass",
-        "StackTrace": null,
-        "Stats": {
-            "duration": 12,
-            "TESTING_LIMITS: Number of SOQL queries": {
-                "used": 0,
-                "allowed": 100
-            },
-            "TESTING_LIMITS: Number of Email Invocations": {
-                "used": 0,
-                "allowed": 10
-            },
-            "TESTING_LIMITS: Number of future calls": {
-                "used": 1,
-                "allowed": 50
-            },
-            "TESTING_LIMITS: Number of DML rows": {
-                "used": 0,
-                "allowed": 10000
-            },
-            "TESTING_LIMITS: Maximum CPU time": {
-                "used": 0,
-                "allowed": 10000
-            },
-            "TESTING_LIMITS: Number of query rows": {
-                "used": 0,
-                "allowed": 50000
-            },
-            "TESTING_LIMITS: Number of DML statements": {
-                "used": 0,
-                "allowed": 150
-            },
-            "TESTING_LIMITS: Number of Mobile Apex push calls": {
-                "used": 0,
-                "allowed": 10
-            },
-            "TESTING_LIMITS: Number of SOSL queries": {
-                "used": 0,
-                "allowed": 20
-            },
-            "TESTING_LIMITS: Number of callouts": {
-                "used": 0,
-                "allowed": 100
-            }
-        },
-        "TestTimestamp": "2023-07-25T14:12:04.000+0000"
+        "TestTimestamp": "2023-07-25T23:00:41.000+0000"
     },
     {
         "Children": null,
@@ -691,7 +691,7 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 1132,
+            "duration": 1155,
             "TESTING_LIMITS: Number of SOQL queries": {
                 "used": 3,
                 "allowed": 100
@@ -709,11 +709,11 @@
                 "allowed": 10000
             },
             "TESTING_LIMITS: Maximum CPU time": {
-                "used": 532,
+                "used": 546,
                 "allowed": 10000
             },
             "TESTING_LIMITS: Number of query rows": {
-                "used": 3,
+                "used": 1,
                 "allowed": 50000
             },
             "TESTING_LIMITS: Number of DML statements": {
@@ -733,7 +733,7 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:12:04.000+0000"
+        "TestTimestamp": "2023-07-25T23:00:41.000+0000"
     },
     {
         "Children": null,
@@ -743,7 +743,7 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 12,
+            "duration": 9,
             "TESTING_LIMITS: Number of SOQL queries": {
                 "used": 0,
                 "allowed": 100
@@ -785,7 +785,7 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:12:06.000+0000"
+        "TestTimestamp": "2023-07-25T23:00:43.000+0000"
     },
     {
         "Children": null,
@@ -795,7 +795,7 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 12,
+            "duration": 8,
             "TESTING_LIMITS: Number of SOQL queries": {
                 "used": 0,
                 "allowed": 100
@@ -837,7 +837,7 @@
                 "allowed": 100
             }
         },
-        "TestTimestamp": "2023-07-25T14:12:06.000+0000"
+        "TestTimestamp": "2023-07-25T23:00:43.000+0000"
     },
     {
         "Children": null,
@@ -847,9 +847,9 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 3563
+            "duration": 3330
         },
-        "TestTimestamp": "2023-07-25T14:09:51.000+0000"
+        "TestTimestamp": "2023-07-25T22:58:31.000+0000"
     },
     {
         "Children": null,
@@ -859,8 +859,8 @@
         "Outcome": "Pass",
         "StackTrace": null,
         "Stats": {
-            "duration": 131
+            "duration": 99
         },
-        "TestTimestamp": "2023-07-25T14:09:51.000+0000"
+        "TestTimestamp": "2023-07-25T22:58:30.000+0000"
     }
 ]
