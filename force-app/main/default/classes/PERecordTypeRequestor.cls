@@ -18,6 +18,9 @@ global with sharing class PERecordTypeRequestor {
                     when 'Instructor Enrollment' {
                         recordTypes.add(PEHelpers.getNoncreditInstructorEnrollmentRecordType());
                     }
+                    when 'Student Enrollment' {
+                        recordTypes.add(PEHelpers.getNoncreditInstructorEnrollmentRecordType());
+                    }
                     when else {
                         recordTypes.add(null);
                     }
