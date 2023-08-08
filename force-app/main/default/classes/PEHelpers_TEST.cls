@@ -7,9 +7,7 @@ private class PEHelpers_TEST {
 
         System.assertEquals(6, types.size());
         System.assert(types.get(0) != null);
-        System.assert(types.get(2) == null);
-
-        System.assert(true);
+        System.assert(types.get(5) == null);
     }
 
 }
