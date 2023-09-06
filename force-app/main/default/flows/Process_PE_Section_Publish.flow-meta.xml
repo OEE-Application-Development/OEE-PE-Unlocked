@@ -126,7 +126,7 @@
             <assignToReference>Get_Course_Offering.hed__Facility__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>IfPresentFacultyId</elementReference>
+                <elementReference>IfPresentFacilityId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -457,6 +457,11 @@
         <name>GetTermReferenceFromSection</name>
         <dataType>String</dataType>
         <expression>LEFT({!$Record.csuoee__Section_Reference__c}, 6)&amp;&apos;-NCT&apos;</expression>
+    </formulas>
+    <formulas>
+        <name>IfPresentFacilityId</name>
+        <dataType>String</dataType>
+        <expression>IF(LEN({!FacilityId}) == 0,{!Get_Course_Offering.hed__Facility__c},{!FacilityId})</expression>
     </formulas>
     <formulas>
         <name>IfPresentFacultyId</name>
