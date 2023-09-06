@@ -1080,7 +1080,7 @@
         <connector>
             <targetReference>Get_Course</targetReference>
         </connector>
-        <object>NC_Section_Publish__e</object>
+        <object>Section_Publish__e</object>
         <triggerType>PlatformEvent</triggerType>
     </start>
     <status>Draft</status>
