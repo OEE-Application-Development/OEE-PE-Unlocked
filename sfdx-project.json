@@ -2,7 +2,7 @@
   "packageDirectories": [
     {
       "package": "OEE-PE-Unlocked",
-      "versionNumber": "0.33.0.NEXT",
+      "versionNumber": "0.34.0.NEXT",
       "path": "force-app",
       "definitionFile": "orgs/release.json",
       "default": true,
@@ -71,7 +71,8 @@
     "OEE-PE-Unlocked@0.29.0-2": "04t5b000001yz0hAAA",
     "OEE-PE-Unlocked@0.30.0-1": "04t5b000001yz29AAA",
     "OEE-PE-Unlocked@0.31.0-1": "04tQm0000000JvVIAU",
-    "OEE-PE-Unlocked@0.32.0-1": "04tQm0000005vdZIAQ"
+    "OEE-PE-Unlocked@0.32.0-1": "04tQm0000005vdZIAQ",
+    "OEE-PE-Unlocked@0.33.0-1": "04tQm0000005xInIAI"
   },
   "sourceApiVersion": "58.0"
 }
