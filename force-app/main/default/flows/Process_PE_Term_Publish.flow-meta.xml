@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Get_CPS_ID</name>
+        <label>Get CPS ID</label>
+        <locationX>220</locationX>
+        <locationY>818</locationY>
+        <actionName>GetCpsTerm</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Create_Term</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>searchTerm</name>
+            <value>
+                <elementReference>$Record.Term_Name__c</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>GetCpsTerm</nameSegment>
+        <outputParameters>
+            <assignToReference>MiddlewareResponseData</assignToReference>
+            <name>data</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>HttpResponseStatus</assignToReference>
+            <name>httpStatus</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>MiddlewareActionSuccess</assignToReference>
+            <name>success</name>
+        </outputParameters>
+        <versionSegment>1</versionSegment>
+    </actionCalls>
+    <actionCalls>
         <name>Get_Institution_Record_Type</name>
         <label>Get Institution Record Type</label>
-        <locationX>242</locationX>
+        <locationX>220</locationX>
         <locationY>602</locationY>
         <actionName>PERecordTypeRequestor</actionName>
         <actionType>apex</actionType>
@@ -17,12 +49,46 @@
                 <stringValue>Educational Institution</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>PERecordTypeRequestor</nameSegment>
         <storeOutputAutomatically>true</storeOutputAutomatically>
+        <versionSegment>1</versionSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Get_Missing_CPS_ID</name>
+        <label>Get CPS ID</label>
+        <locationX>660</locationX>
+        <locationY>710</locationY>
+        <actionName>GetCpsTerm</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Set_Missing_CPS_ID</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>searchTerm</name>
+            <value>
+                <elementReference>$Record.Term_Name__c</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>GetCpsTerm</nameSegment>
+        <outputParameters>
+            <assignToReference>MiddlewareResponseData</assignToReference>
+            <name>data</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>HttpResponseStatus</assignToReference>
+            <name>httpStatus</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>MiddlewareActionSuccess</assignToReference>
+            <name>success</name>
+        </outputParameters>
+        <versionSegment>1</versionSegment>
     </actionCalls>
     <actionCalls>
         <name>Get_Noncredit_Term_RecordType</name>
         <label>Get Noncredit Term RecordType</label>
-        <locationX>374</locationX>
+        <locationX>396</locationX>
         <locationY>278</locationY>
         <actionName>PERecordTypeRequestor</actionName>
         <actionType>apex</actionType>
@@ -36,17 +102,19 @@
                 <stringValue>Term</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>PERecordTypeRequestor</nameSegment>
         <storeOutputAutomatically>true</storeOutputAutomatically>
+        <versionSegment>1</versionSegment>
     </actionCalls>
     <actionCalls>
         <name>Get_PE_Account</name>
         <label>Get CSUOEE Institution</label>
-        <locationX>242</locationX>
+        <locationX>220</locationX>
         <locationY>710</locationY>
         <actionName>AccountRequestor</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Create_Term</targetReference>
+            <targetReference>Get_CPS_ID</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -61,16 +129,34 @@
                 <stringValue>CSUOEE</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>AccountRequestor</nameSegment>
         <storeOutputAutomatically>true</storeOutputAutomatically>
+        <versionSegment>1</versionSegment>
     </actionCalls>
     <apiVersion>57.0</apiVersion>
+    <assignments>
+        <name>Set_Missing_CPS_ID</name>
+        <label>Set Missing CPS ID</label>
+        <locationX>660</locationX>
+        <locationY>818</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Noncredit_Term.CPS_ID__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GetCpsIdValueOrNull</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Term</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Does_Term_Exist</name>
         <label>Does Term Exist?</label>
-        <locationX>374</locationX>
+        <locationX>396</locationX>
         <locationY>494</locationY>
         <defaultConnector>
-            <targetReference>Update_Term</targetReference>
+            <targetReference>Need_to_get_CPS_ID</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Term Exists</defaultConnectorLabel>
         <rules>
@@ -111,7 +197,38 @@
             <label>Credit</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Need_to_get_CPS_ID</name>
+        <label>Need to get CPS ID?</label>
+        <locationX>572</locationX>
+        <locationY>602</locationY>
+        <defaultConnector>
+            <targetReference>Get_Missing_CPS_ID</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>CPS ID Missing</defaultConnectorLabel>
+        <rules>
+            <name>CPS_ID_Already_Set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Noncredit_Term.CPS_ID__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Term</targetReference>
+            </connector>
+            <label>CPS ID Already Set</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>GetCpsIdValueOrNull</name>
+        <dataType>Number</dataType>
+        <expression>IF({!MiddlewareActionSuccess},VALUE({!MiddlewareResponseData.id}),null)</expression>
+        <scale>2</scale>
+    </formulas>
     <formulas>
         <name>TermNameToReference</name>
         <dataType>String</dataType>
@@ -141,8 +258,14 @@
     <recordCreates>
         <name>Create_Term</name>
         <label>Create Term</label>
-        <locationX>242</locationX>
-        <locationY>818</locationY>
+        <locationX>220</locationX>
+        <locationY>926</locationY>
+        <inputAssignments>
+            <field>CPS_ID__c</field>
+            <value>
+                <elementReference>GetCpsIdValueOrNull</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>Display_Order__c</field>
             <value>
@@ -197,7 +320,7 @@
     <recordLookups>
         <name>Get_Noncredit_Term</name>
         <label>Get Noncredit Term</label>
-        <locationX>374</locationX>
+        <locationX>396</locationX>
         <locationY>386</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -218,8 +341,8 @@
     <recordUpdates>
         <name>Update_Term</name>
         <label>Update Term</label>
-        <locationX>506</locationX>
-        <locationY>602</locationY>
+        <locationX>572</locationX>
+        <locationY>1010</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -258,4 +381,27 @@
         <triggerType>PlatformEvent</triggerType>
     </start>
     <status>Draft</status>
+    <variables>
+        <name>HttpResponseStatus</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>MiddlewareActionSuccess</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>MiddlewareResponseData</name>
+        <apexClass>csuoee__MiddlewareActionResponseData</apexClass>
+        <dataType>Apex</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
 </Flow>
