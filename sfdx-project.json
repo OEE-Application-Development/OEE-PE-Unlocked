@@ -8,6 +8,9 @@
       "default": true,
       "dependencies": [
         {
+          "package": "04tHp00000171TFIAY"
+        },
+        {
           "package": "04tHq0000016bsrIAA"
         },
         {
@@ -17,10 +20,10 @@
           "package": "04tDo0000008w4HIAQ"
         },
         {
-          "package": "04tDn000000zNsNIAU"
+          "package": "04tDn000000zPuxIAE"
         },
         {
-          "package": "04tQm0000005g3SIAQ"
+          "package": "04tQm000000EaoPIAS"
         }
       ]
     }
@@ -72,7 +75,8 @@
     "OEE-PE-Unlocked@0.30.0-1": "04t5b000001yz29AAA",
     "OEE-PE-Unlocked@0.31.0-1": "04tQm0000000JvVIAU",
     "OEE-PE-Unlocked@0.32.0-1": "04tQm0000005vdZIAQ",
-    "OEE-PE-Unlocked@0.33.0-1": "04tQm0000005xInIAI"
+    "OEE-PE-Unlocked@0.33.0-1": "04tQm0000005xInIAI",
+    "OEE-PE-Unlocked@0.34.0-1": "04tQm000000EeaHIAS"
   },
   "sourceApiVersion": "58.0"
 }
