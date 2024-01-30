@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PE_Enrollment_Reference__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>PE Enrollment Reference section ref + user inode e.g. 2024SP-HSLL-3000-200-1113758</description>
+    <externalId>true</externalId>
+    <inlineHelpText>PE Enrollment Reference section ref + user inode e.g. 2024SP-HSLL-3000-200-1113758</inlineHelpText>
+    <label>PE Enrollment Reference</label>
+    <length>50</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>
