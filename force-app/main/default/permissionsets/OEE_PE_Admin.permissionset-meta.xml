@@ -706,14 +706,6 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>
-        <recordType>Account.Academic_Program</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Account.Educational_Institution</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>Account.PE_Account</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
