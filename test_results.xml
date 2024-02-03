@@ -1,26 +1,31 @@
-<testsuite tests="22">
-  <testcase classname="AzureEventIntegration_TEST" name="constructorCoverage" time="59" />
-  <testcase classname="AzureEventIntegration_TEST" name="getAccount" time="823" />
-  <testcase classname="AzureEventIntegration_TEST" name="sendEvents" time="13" />
-  <testcase classname="CombinedFunctions_TEST" name="createEventsForSection" time="3981" />
-  <testcase classname="CombinedFunctions_TEST" name="createRegistrationBatch" time="886">
-    <failure type="failed" message="Methods defined as TestMethod do not support Web service callouts"></failure>
-  </testcase>
-  <testcase classname="CombinedFunctions_TEST" name="getContactsByEmails" time="13" />
-  <testcase classname="CombinedFunctions_TEST" name="handleEnrollments" time="1032" />
-  <testcase classname="CombinedFunctions_TEST" name="midpointTriggers" time="2145" />
-  <testcase classname="CombinedFunctions_TEST" name="overloadEvent" time="1964" />
-  <testcase classname="CombinedFunctions_TEST" name="refreshData" time="177" />
-  <testcase classname="CombinedFunctions_TEST" name="simpleEmail" time="124" />
-  <testcase classname="JsonTest_TEST" name="decode" time="22" />
-  <testcase classname="JsonTest_TEST" name="encode" time="8" />
-  <testcase classname="PEEvent_TEST" name="cancelRegistration" time="41" />
-  <testcase classname="PEEvent_TEST" name="enrollStudent" time="11" />
-  <testcase classname="PEEvent_TEST" name="lmsEnrollmentComplete" time="9" />
-  <testcase classname="PEEvent_TEST" name="lmsEnrollmentRequest" time="20" />
-  <testcase classname="PEEvent_TEST" name="registrationBatchTest" time="1155" />
-  <testcase classname="PEEvent_TEST" name="sendHumanRequired" time="9" />
-  <testcase classname="PEEvent_TEST" name="unenrollStudent" time="8" />
-  <testcase classname="PEHandleEnrollments_TEST" name="handleStudentEnrollment" time="3330" />
-  <testcase classname="PEHelpers_TEST" name="recordTypeTest" time="99" />
+<testsuite tests="29">
+  <testcase classname="AzureEventIntegration_TEST" name="constructorCoverage" time="92" />
+  <testcase classname="AzureEventIntegration_TEST" name="getAccount" time="1010" />
+  <testcase classname="AzureEventIntegration_TEST" name="sendEvents" time="39" />
+  <testcase classname="CombinedFunctions_TEST" name="createEventsForSection" time="7380" />
+  <testcase classname="CombinedFunctions_TEST" name="createRegistrationBatch" time="1816" />
+  <testcase classname="CombinedFunctions_TEST" name="getContactsByEmails" time="41" />
+  <testcase classname="CombinedFunctions_TEST" name="getNextActiveOffering" time="579" />
+  <testcase classname="CombinedFunctions_TEST" name="handleEnrollments" time="3485" />
+  <testcase classname="CombinedFunctions_TEST" name="midpointTriggers" time="3440" />
+  <testcase classname="CombinedFunctions_TEST" name="overloadEvent" time="7028" />
+  <testcase classname="CombinedFunctions_TEST" name="refreshData" time="365" />
+  <testcase classname="CombinedFunctions_TEST" name="simpleEmail" time="359" />
+  <testcase classname="InvocableCanvas_TEST" name="importCanvasEnrollment" time="155" />
+  <testcase classname="JsonTest_TEST" name="decode" time="39" />
+  <testcase classname="JsonTest_TEST" name="encode" time="10" />
+  <testcase classname="MiddlewareIntegration_TEST" name="checkEnrollmentStatus" time="172" />
+  <testcase classname="MiddlewareIntegration_TEST" name="sendPostRequest" time="23" />
+  <testcase classname="MiddlewareIntegration_TEST" name="testCpsSearches" time="31" />
+  <testcase classname="MiddlewareIntegration_TEST" name="testInvocables" time="27" />
+  <testcase classname="PEEvent_TEST" name="cancelRegistration" time="117" />
+  <testcase classname="PEEvent_TEST" name="enrollStudent" time="27" />
+  <testcase classname="PEEvent_TEST" name="lmsEnrollmentComplete" time="22" />
+  <testcase classname="PEEvent_TEST" name="lmsEnrollmentRequest" time="22" />
+  <testcase classname="PEEvent_TEST" name="registrationBatchTest" time="2287" />
+  <testcase classname="PEEvent_TEST" name="sendHumanRequired" time="30" />
+  <testcase classname="PEEvent_TEST" name="unenrollStudent" time="21" />
+  <testcase classname="PEHandleEnrollments_TEST" name="handleStudentEnrollment" time="6398" />
+  <testcase classname="PEHelpers_TEST" name="createEnrollmentTest" time="7285" />
+  <testcase classname="PEHelpers_TEST" name="recordTypeTest" time="63" />
 </testsuite>

@@ -1,13 +1,19 @@
 {
   "orgName": "OEE-PE-Unlocked - Beta Test Org",
-  "sourceOrg": "00D6g000002hydVEAQ",
+  "edition": "Enterprise",
   "features": ["SharedActivities"],
   "settings": {
+    "accountSettings": {
+      "enableAccountHistoryTracking": true
+    },
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
     },
     "chatterSettings": {
       "enableChatter": true
+    },
+    "emailAdministrationSettings": {
+      "enableEnhancedEmailEnabled": true
     },
     "userManagementSettings": {
       "enableNewProfileUI": true
