@@ -25,6 +25,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CpsUpsert</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CreatePEEnrollmentViaAccount</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -190,6 +194,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.hed__School_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.CPS_Provider_ID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
