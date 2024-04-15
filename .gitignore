@@ -51,3 +51,5 @@ $RECYCLE.BIN/
 .idea
 .project
 .settings
+test_results.json
+test_results.xml
