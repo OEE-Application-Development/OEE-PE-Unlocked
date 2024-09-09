@@ -534,6 +534,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>hed__Term__c.Empty_Sections__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>hed__Term__c.Is_Visible__c</field>
         <readable>true</readable>
@@ -541,6 +546,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>hed__Term__c.Programming_Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>hed__Term__c.Sections_in_Term__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>hed__Term__c.Show_on_Appeals_Form__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
