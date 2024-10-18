@@ -7,7 +7,13 @@ global with sharing class TryConvertNoncreditLead {
      */
     @HttpPost
     global static void attemptConvert(List<Contact> contacts) {
-        ConvertResult result = CombinedFunctions.attemptConvertByEmail(contacts, NONCREDIT_EMAIL_FIELDS);
+        try {
+            ConvertResult result = CombinedFunctions.attemptConvertByEmail(contacts, NONCREDIT_EMAIL_FIELDS);
+        } catch(QueryException qe) {
+            // This catch is purely for beta build - for some reason the build is missing prefixes? csuoee__CSU_Online_Account_Email__c marked as missing.
+            RestHelpers.setNotFoundResponse('Could not run query.');
+            return;
+        }
 
         RestHelpers.setJsonResponse(result);
     }
