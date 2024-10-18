@@ -133,6 +133,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>TryConvertNoncreditLead</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>ValidateTx</apexClass>
         <enabled>true</enabled>
     </classAccesses>
