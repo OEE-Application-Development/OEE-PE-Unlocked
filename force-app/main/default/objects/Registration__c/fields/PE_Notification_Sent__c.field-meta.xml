@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PE_Notification_Sent__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>True if Marketing Cloud has sent an email to the student.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>True if Marketing Cloud has sent an email to the student.</inlineHelpText>
+    <label>PE Notification Sent</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

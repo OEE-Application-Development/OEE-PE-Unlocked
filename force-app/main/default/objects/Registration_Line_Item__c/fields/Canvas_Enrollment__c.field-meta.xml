@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Canvas_Enrollment__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>The Canvas Enrollment that was created for this PE Line Item.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Canvas Enrollment that was created for this PE Line Item.</inlineHelpText>
+    <label>Canvas Enrollment</label>
+    <referenceTo>lms_hed__LMS_Course_Enrollment__c</referenceTo>
+    <relationshipLabel>Registration Line Items</relationshipLabel>
+    <relationshipName>Registration_Line_Items</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
