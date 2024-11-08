@@ -34,7 +34,7 @@ export default class CallRegistrationUpdate extends LightningElement {
         
         validateRegistration({reg: {csuoee__Registration_Id__c: this.recordId}})
             .then((result) => {
-
+                this.dispatchEvent(new ShowToastEvent({title: 'Registration Validation', message: 'Registration is Valid', variant: 'success'}));
             })
             .error((errorResult) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
@@ -49,7 +49,16 @@ export default class CallRegistrationUpdate extends LightningElement {
 
         validateLineItems({reg: {csuoee__Registration_Id__c: this.recordId}})
             .then((result) => {
-
+                let c=0,n=0;
+                for(var idx=0;idx<result.length;idx++) {
+                    let li = result[idx];
+                    if('Confirmed'==li.csuoee__Status__c) {
+                        c++;
+                    } else {
+                        n++;
+                    }
+                }
+                this.dispatchEvent(new ShowToastEvent({title: 'Registration Line Item Validation', message: 'Line Items Confirmed: '+c+', Line Items Not Confirmed: '+n, variant: 'success'}));
             })
             .error((errorResult) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
@@ -64,7 +73,7 @@ export default class CallRegistrationUpdate extends LightningElement {
 
         validateEnrollments({reg: {csuoee__Registration_Id__c: this.recordId}})
             .then((result) => {
-
+                this.dispatchEvent(new ShowToastEvent({title: 'Registration Enrollment Validation', message: result.length+' enrollments found for registration.', variant: 'success'}));
             })
             .error((errorResult) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
@@ -79,7 +88,11 @@ export default class CallRegistrationUpdate extends LightningElement {
 
         getNoncreditCanvasLogin({account: {'hed__School_Code__c': getFieldValue(this.registration, NONCREDIT_ID)}})
             .then((result) => {
-                
+                if(result == null) {
+                    this.dispatchEvent(new ShowToastEvent({title: 'Canvas Login', message: 'No Login Found.', variant: 'success'}));
+                } else {
+                    this.dispatchEvent(new ShowToastEvent({title: 'Canvas Login', message: 'Login Found: '+result.lms_hed__Primary_Login__c, variant: 'success'}));
+                }
             })
             .error((errorResult) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
