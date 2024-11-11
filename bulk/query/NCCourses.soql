@@ -1,0 +1,1 @@
+SELECT Name, csuoee__Course_Code__c, hed__Course_ID__c, hed__Account__r.hed__School_Code__c, hed__Description__c, hed__Extended_Description__c, lms_hed__LMS_Reference_Code__c, csuoee__Short_Description__c FROM hed__Course__c WHERE RecordType.DeveloperName = 'Noncredit'
