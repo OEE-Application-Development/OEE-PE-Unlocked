@@ -1,0 +1,1 @@
+SELECT Name, lms_hed__Course__r.lms_hed__LMS_Reference_Code__c, lms_hed__Course_Term_Link__c, lms_hed__LMS_Course_ID__c, lms_hed__Term__r.lms_hed__LMS_Reference_Code__c, csuoee__Canvas_Course_SIS_Id__c FROM lms_hed__LMS_Course_Term__c WHERE lms_hed__Course__r.RecordType.DeveloperName = 'Noncredit'

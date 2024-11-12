@@ -1,0 +1,1 @@
+SELECT hed__School_Code__c, Name FROM Account WHERE RecordType.DeveloperName = 'Educational_Institution'
