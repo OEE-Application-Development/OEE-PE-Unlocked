@@ -1,0 +1,1 @@
+SELECT Name, lms_hed__Account_Owner__r.csuoee__Noncredit_ID__c, csuoee__Canvas_User_SIS_Id__c, lms_hed__LMS__r.hed__School_Code__c, lms_hed__LMS_External_ID__c, lms_hed__Primary_Login__c FROM lms_hed__LMS_Account__c WHERE lms_hed__Account_Owner__r.Account.RecordType.DeveloperName = 'PE_Account'
