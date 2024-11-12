@@ -1,0 +1,1 @@
+SELECT hed__Contact__r.csuoee__Noncredit_ID__c, hed__Course_Offering__r.lms_hed__LMS_Reference_Code__c, hed__Grade__c, csuoee__PE_Enrollment_Reference__c, hed__Status__c, hed__Verification_Status__c, hed__Verification_Status_Date__c FROM hed__Course_Enrollment__c WHERE hed__Contact__r.Account.RecordType.DeveloperName='PE_Account' AND RecordType.DeveloperName='Student'

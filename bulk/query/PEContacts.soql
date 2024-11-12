@@ -1,0 +1,1 @@
+SELECT FirstName, LastName, Account.hed__School_Code__c, Email, csuoee__Front_Door_ID__c, csuoee__Noncredit_ID__c, csuoee__CSU_Online_Account_Email__c FROM Contact WHERE Account.RecordType.DeveloperName='PE_Account'

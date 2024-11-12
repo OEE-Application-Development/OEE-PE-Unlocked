@@ -1,0 +1,1 @@
+SELECT hed__School_Code__c, Name, hed__Credentialing_Email__c, Parent.hed__School_Code__c FROM Account WHERE RecordType.DeveloperName = 'PE_Account'
