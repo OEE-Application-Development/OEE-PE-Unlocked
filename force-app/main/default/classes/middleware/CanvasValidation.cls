@@ -20,7 +20,7 @@ global with sharing class CanvasValidation {
      */
     @AuraEnabled
     public static List<lms_hed__LMS_Course_Enrollment__c> getNoncreditCanvasEnrollments(csuoee__Registration__c reg) {
-        String path = '/salesforce/action/canvas/'+registration.csuoee__Registration_Id__c+'/enrollments';
+        String path = '/salesforce/action/canvas/'+reg.csuoee__Registration_Id__c+'/enrollments';
         HttpResponse response = MiddlewareIntegration.sendMiddlewareRequest('GET', path);
         if(response.getStatusCode() == 404) return null;
         try {
