@@ -32,7 +32,7 @@ export default class CallRegistrationUpdate extends LightningElement {
             content: 'Checking Opus/SF information. This may take a moment... (ESC to close).'
         });
         
-        validateRegistration({reg: {csuoee__Registration_Id__c: this.recordId}})
+        validateRegistration({reg: {csuoee__Registration_Id__c: getFieldValue(this.registration, REG_ID)}})
             .then((result) => {
                 this.dispatchEvent(new ShowToastEvent({title: 'Registration Validation', message: 'Registration is Valid', variant: 'success'}));
             })
@@ -47,7 +47,7 @@ export default class CallRegistrationUpdate extends LightningElement {
             content: 'Checking Opus/SF information. This may take a moment... (ESC to close).'
         });
 
-        validateLineItems({reg: {csuoee__Registration_Id__c: this.recordId}})
+        validateLineItems({reg: {csuoee__Registration_Id__c: getFieldValue(this.registration, REG_ID)}})
             .then((result) => {
                 let c=0,n=0;
                 for(var idx=0;idx<result.length;idx++) {
@@ -71,7 +71,7 @@ export default class CallRegistrationUpdate extends LightningElement {
             content: 'Checking Opus/SF information. This may take a moment... (ESC to close).'
         });
 
-        validateEnrollments({reg: {csuoee__Registration_Id__c: this.recordId}})
+        validateEnrollments({reg: {csuoee__Registration_Id__c: getFieldValue(this.registration, REG_ID)}})
             .then((result) => {
                 this.dispatchEvent(new ShowToastEvent({title: 'Registration Enrollment Validation', message: result.length+' enrollments found for registration.', variant: 'success'}));
             })
@@ -105,7 +105,7 @@ export default class CallRegistrationUpdate extends LightningElement {
             content: 'Checking Opus/Canvas/SF information. This may take a moment... (ESC to close).'
         });
 
-        getNoncreditCanvasEnrollments({reg: {csuoee__Registration_Id__c: this.recordId}})
+        getNoncreditCanvasEnrollments({reg: {csuoee__Registration_Id__c: getFieldValue(this.registration, REG_ID)}})
             .then((result) => {
                 
             })
