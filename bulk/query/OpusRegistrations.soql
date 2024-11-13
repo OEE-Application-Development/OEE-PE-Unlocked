@@ -1,0 +1,1 @@
+SELECT Name, csuoee__Online_Account__r.hed__School_Code__c, csuoee__PE_Confirmation_Sent__c, csuoee__PE_Notification_Sent__c, csuoee__Registration_Id__c FROM csuoee__Registration__c WHERE Id IN (SELECT csuoee__Registration__c FROM csuoee__Registration_Line_Item__c WHERE csuoee__Course_Offering__r.hed__Course__r.RecordType.DeveloperName = 'Noncredit')

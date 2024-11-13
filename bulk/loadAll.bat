@@ -26,5 +26,9 @@ call sf apex run --file bulk/recordtypes/setStudentEnrollmentRecordType.apex
 call sf data import bulk -s lms_hed__LMS_Account__c --file "bulk/data/CanvasAccounts.csv" -w 10
 call sf data import bulk -s lms_hed__LMS_Course_Enrollment__c --file "bulk/data/CanvasEnrollments.csv" -w 10
 
+REM Opus Registrations
+call sf data import bulk -s csuoee__Registration__c --file "bulk/data/OpusRegistrations.csv" -w 10
+call sf data import bulk -s csuoee__Registration_Line_Item__c --file "bulk/data/OpusRegistrationLineItems.csv" -w 10
+
 REM Re-Enabling TDTM triggers
 start "Enable TDTM" /wait /b cci task run restore_tdtm_trigger_handlers --namespace hed
