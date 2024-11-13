@@ -111,6 +111,7 @@ export default class CallRegistrationUpdate extends LightningElement {
 
         getNoncreditCanvasEnrollments({reg: {csuoee__Registration_Id__c: getFieldValue(this.registration, REG_ID)}})
             .then((result) => {
+                this.dispatchEvent(new ShowToastEvent({title: 'Canvas Enrollments', message: result.length+' canvas enrollments found for registration.', variant: 'success'}));
                 workspaceAPI.refreshCurrentTab();               
             })
             .error((errorResult) => {
