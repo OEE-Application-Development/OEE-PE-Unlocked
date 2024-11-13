@@ -13,6 +13,7 @@ import REG_ID from '@salesforce/schema/Registration__c.Registration_Id__c';
 import NONCREDIT_ID from '@salesforce/schema/Registration__c.Online_Account__r.hed__School_Code__c';
 
 import modalAlert from "c/modalAlert";
+import workspaceAPI from "c/workspaceAPI";
 
 const MIDDLEWARE_ERROR = new ShowToastEvent({title: 'Integration Error', message: 'Error getting update from Middleware.', variant: 'error'});
 
@@ -35,6 +36,7 @@ export default class CallRegistrationUpdate extends LightningElement {
         validateRegistration({reg: {csuoee__Registration_Id__c: getFieldValue(this.registration, REG_ID)}})
             .then((result) => {
                 this.dispatchEvent(new ShowToastEvent({title: 'Registration Validation', message: 'Registration is Valid', variant: 'success'}));
+                workspaceAPI.refreshCurrentTab();
             })
             .error((errorResult) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
@@ -59,6 +61,7 @@ export default class CallRegistrationUpdate extends LightningElement {
                     }
                 }
                 this.dispatchEvent(new ShowToastEvent({title: 'Registration Line Item Validation', message: 'Line Items Confirmed: '+c+', Line Items Not Confirmed: '+n, variant: 'success'}));
+                workspaceAPI.refreshCurrentTab();
             })
             .error((errorResult) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
@@ -74,6 +77,7 @@ export default class CallRegistrationUpdate extends LightningElement {
         validateEnrollments({reg: {csuoee__Registration_Id__c: getFieldValue(this.registration, REG_ID)}})
             .then((result) => {
                 this.dispatchEvent(new ShowToastEvent({title: 'Registration Enrollment Validation', message: result.length+' enrollments found for registration.', variant: 'success'}));
+                workspaceAPI.refreshCurrentTab();
             })
             .error((errorResult) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
@@ -107,7 +111,7 @@ export default class CallRegistrationUpdate extends LightningElement {
 
         getNoncreditCanvasEnrollments({reg: {csuoee__Registration_Id__c: getFieldValue(this.registration, REG_ID)}})
             .then((result) => {
-                
+                workspaceAPI.refreshCurrentTab();               
             })
             .error((errorResult) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
