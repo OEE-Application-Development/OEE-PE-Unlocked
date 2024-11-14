@@ -32,7 +32,7 @@ global class PE_MiddlewareIntegration_TEST {
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, BaseTestUtil.getBasicMiddlewareMock('[{"attributes": {"type": "lms_hed__LMS_Course_Enrollment__c"}, "lms_hed__Course_Connection__c": "a05VA0000089pM6YAI", "lms_hed__Course_Offering__c": "a05VA0000089pM6YAI", "lms_hed__LMS_Account__c": "a05VA0000089pM6YAI", "lms_hed__LMS_Course_Term__c": "a05VA0000089pM6YAI"}, {"attributes": {"type": "lms_hed__LMS_Course_Enrollment__c"}, "lms_hed__Course_Connection__c": "a05VA0000089pM6YAI", "lms_hed__Course_Offering__c": "a05VA0000089pM6YAI", "lms_hed__LMS_Account__c": "a05VA0000089pM6YAI", "lms_hed__LMS_Course_Term__c": "a05VA0000089pM6YAI"}]'));
 
-        List<lms_hed__LMS_Course_Enrollment__c> results = CanvasValidation.getNoncreditCanvasEnrollments(new Account(hed__School_Code__c = 'learn.colostate.edu.1'));
+        List<lms_hed__LMS_Course_Enrollment__c> results = CanvasValidation.getNoncreditCanvasEnrollments(new csuoee__Registration__c(csuoee__Registration_Id__c = 1));
         System.assert(results.size() == 2);
 
         Test.stopTest();
@@ -44,7 +44,7 @@ global class PE_MiddlewareIntegration_TEST {
         Test.setMock(HttpCalloutMock.class, BaseTestUtil.getBasicMiddlewareMock(''));
 
         try {
-            List<lms_hed__LMS_Course_Enrollment__c> results = CanvasValidation.getNoncreditCanvasEnrollments(new Account(hed__School_Code__c = 'learn.colostate.edu.1'));
+            List<lms_hed__LMS_Course_Enrollment__c> results = CanvasValidation.getNoncreditCanvasEnrollments(new csuoee__Registration__c(csuoee__Registration_Id__c = 1));
             System.assert(false, 'This should have errored.');
         } catch(AuraException ae) {
 
