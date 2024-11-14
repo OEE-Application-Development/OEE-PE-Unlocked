@@ -26,6 +26,22 @@ tasks:
     run_tests:
         options:
             required_org_code_coverage_percent: 75
+    
+    update_admin_profile:
+        options:
+            record_types:
+                - record_type: Account.Educational_Institution
+                - record_type: Account.csumidp_hed__University_College
+                - record_type: Account.PE_Account
+                  default: true
+                - record_type: Account.lms_hed__LMS
+                - record_type: hed__Course__c.Noncredit
+                  default: true
+                - record_type: hed__Term__c.Noncredit
+                  default: true
+                - record_type: hed__Course_Enrollment__c.Student
+                  default: true
+
 
 orgs:
     scratch:
