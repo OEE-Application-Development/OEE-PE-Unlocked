@@ -7,6 +7,7 @@ import validateRegistration from '@salesforce/apex/RegistrationValidation.valida
 import validateLineItems from '@salesforce/apex/RegistrationValidation.validateLineItems';
 import validateEnrollments from '@salesforce/apex/RegistrationValidation.validateEnrollments';
 import getNoncreditCanvasLogin from '@salesforce/apex/CanvasValidation.getNoncreditCanvasLogin';
+import getNoncreditCanvasEnrollments from '@salesforce/apex/CanvasValidation.getNoncreditCanvasEnrollments';
 
 /* Fields */
 import REG_ID from '@salesforce/schema/Registration__c.Registration_Id__c';
