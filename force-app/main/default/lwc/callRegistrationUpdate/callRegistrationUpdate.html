@@ -1,9 +1,23 @@
 <template>
     <lightning-card title="Registration Actions">
-        <label><button aria-label="Validate" onclick={runValidate} class="slds-button slds-button_neutral slds-var-m-left_x-small">Validate</button></label>
-        <label><button aria-label="Validate Line Items" onclick={runValidateLineItems} class="slds-button slds-button_neutral slds-var-m-left_x-small">Validate Line Items</button></label>
-        <label><button aria-label="Validate Enrollments" onclick={runValidateEnrollments} class="slds-button slds-button_neutral slds-var-m-left_x-small">Validate Enrollments</button></label>
-        <label><button aria-label="Validate Canvas Login" onclick={runValidateCanvasLogin} class="slds-button slds-button_neutral slds-var-m-left_x-small">Validate Canvas Login</button></label>
-        <label><button aria-label="Validate Canvas Enrollments" onclick={runValidateCanvasEnrollments} class="slds-button slds-button_neutral slds-var-m-left_x-small">Validate Canvas Enrollments</button></label>
+        <template lwc:if={isSmall}>
+            <lightning-button-group title="Registration Actions" class="slds-m-left_x-small">
+                <lightning-button aria-label="Validate Line Items" onclick={runValidateLineItems} label="Get Line Items"></lightning-button>
+                <lightning-button aria-label="Validate Enrollments" onclick={runValidateEnrollments} label="Get Enrollments"></lightning-button>
+                <lightning-button-menu alternative-text="Canvas Checks">
+                    <lightning-menu-item title="Validate Canvas Login" value="GetCanvasLogin" label="Get Canvas Login" onclick={runValidateCanvasLogin}></lightning-menu-item>
+                    <lightning-menu-item title="Validate Canvas Enrollments" value="GetCanvasEnrollments" label="Get Canvas Enrollments" onclick={runValidateCanvasEnrollments}></lightning-menu-item>
+                </lightning-button-menu>
+            </lightning-button-group>
+        </template>
+        <template lwc:else>
+            <lightning-button-group title="Registration Actions" class="slds-m-left_x-small">
+                <lightning-button aria-label="Validate" onclick={runValidate} label="Validate"></lightning-button>
+                <lightning-button aria-label="Validate Line Items" onclick={runValidateLineItems} label="Validate Line Items"></lightning-button>
+                <lightning-button aria-label="Validate Enrollments" onclick={runValidateEnrollments} label="Validate Enrollments"></lightning-button>
+                <lightning-button aria-label="Validate Canvas Login" onclick={runValidateCanvasLogin} label="Validate Canvas Login"></lightning-button>
+                <lightning-button aria-label="Validate Canvas Enrollments" onclick={runValidateCanvasEnrollments} label="Validate Canvas Enrollments"></lightning-button>
+            </lightning-button-group>
+        </template>
     </lightning-card>
 </template>

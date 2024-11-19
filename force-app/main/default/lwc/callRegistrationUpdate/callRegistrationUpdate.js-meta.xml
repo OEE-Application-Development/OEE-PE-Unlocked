@@ -12,6 +12,10 @@
             <objects>
                 <object>csuoee__Registration__c</object>
             </objects>
+            <supportedFormFactors>
+                <supportedFormFactor type="Small" />
+                <supportedFormFactor type="Large" />
+            </supportedFormFactors>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

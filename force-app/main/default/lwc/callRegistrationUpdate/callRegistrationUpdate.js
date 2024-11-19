@@ -1,6 +1,7 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import FORM_FACTOR from '@salesforce/client/formFactor';
 
 /* Aura Enabled*/
 import validateRegistration from '@salesforce/apex/RegistrationValidation.validateRegistration';
@@ -19,6 +20,10 @@ import workspaceAPI from "c/workspaceAPI";
 const MIDDLEWARE_ERROR = new ShowToastEvent({title: 'Integration Error', message: 'Error getting update from Middleware.', variant: 'error'});
 
 export default class CallRegistrationUpdate extends LightningElement {
+
+    get isSmall() {
+        return (FORM_FACTOR == 'Small');
+    }
 
     @api recordId;
 
