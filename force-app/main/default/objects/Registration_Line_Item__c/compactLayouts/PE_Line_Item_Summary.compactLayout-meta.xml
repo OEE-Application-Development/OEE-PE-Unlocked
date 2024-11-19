@@ -6,5 +6,5 @@
     <fields>Status__c</fields>
     <fields>Course_Offering__c</fields>
     <fields>Canvas_Enrollment__c</fields>
-    <label>Line Item Summary</label>
+    <label>PE Line Item Summary</label>
 </CompactLayout>
