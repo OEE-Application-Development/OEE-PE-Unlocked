@@ -3,20 +3,20 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>Course_Management</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>hed__Course__c</pageOrSobjectType>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Section_Management</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
         <pageOrSobjectType>hed__Course_Offering__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Course_Management</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>hed__Course__c</pageOrSobjectType>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
@@ -64,9 +64,13 @@
     <tabs>standard-Task</tabs>
     <tabs>hed__Course_Enrollment__c</tabs>
     <tabs>hed__Course__c</tabs>
+    <tabs>Registration__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Professional_Education_UtilityBar</utilityBar>
     <workspaceConfig>
+        <mappings>
+            <tab>Registration__c</tab>
+        </mappings>
         <mappings>
             <tab>hed__Course_Enrollment__c</tab>
         </mappings>

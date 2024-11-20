@@ -12,7 +12,7 @@
                     <name>entityNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>hed__Academic_Certification__c</value>
+                            <value>Registration__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
