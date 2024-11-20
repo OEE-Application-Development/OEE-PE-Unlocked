@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Import_Registration_Action</name>
+        <label>Import Registration Action</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <actionName>ImportRegistration</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Registration_Import_Success</targetReference>
+        </connector>
+        <flowTransactionModel>NewTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>registrations</name>
+            <value>
+                <elementReference>Registration</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>Registration</assignToReference>
+            <name>output</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Lookup_Noncredit_Term_Record_Type</name>
         <label>Lookup Noncredit Term Record Type</label>
         <locationX>182</locationX>
@@ -40,7 +62,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Import_Registration</targetReference>
+                <targetReference>Import_Registration_Action</targetReference>
             </connector>
             <label>Registration Selected</label>
         </rules>
@@ -94,16 +116,6 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
-    <recordCreates>
-        <name>Import_Registration</name>
-        <label>Import Registration</label>
-        <locationX>50</locationX>
-        <locationY>566</locationY>
-        <connector>
-            <targetReference>Registration_Import_Success</targetReference>
-        </connector>
-        <inputReference>Registration</inputReference>
-    </recordCreates>
     <runInMode>DefaultMode</runInMode>
     <screens>
         <name>Registration_Import_Success</name>
