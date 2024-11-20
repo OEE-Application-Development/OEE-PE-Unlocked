@@ -2,12 +2,12 @@
     <lightning-card title="Registration Actions">
         <template lwc:if={isSmall}>
             <lightning-button-group title="Registration Actions" class="slds-m-left_x-small">
-                <lightning-button aria-label="Validate Line Items" onclick={runValidateLineItems} label="Get Line Items"></lightning-button>
-                <lightning-button aria-label="Validate Enrollments" onclick={runValidateEnrollments} label="Get Enrollments"></lightning-button>
                 <lightning-button-menu alternative-text="Canvas Checks">
                     <lightning-menu-item title="Validate Canvas Login" value="GetCanvasLogin" label="Get Canvas Login" onclick={runValidateCanvasLogin}></lightning-menu-item>
                     <lightning-menu-item title="Validate Canvas Enrollments" value="GetCanvasEnrollments" label="Get Canvas Enrollments" onclick={runValidateCanvasEnrollments}></lightning-menu-item>
                 </lightning-button-menu>
+                <lightning-button aria-label="Validate Line Items" onclick={runValidateLineItems} label="Get Line Items"></lightning-button>
+                <lightning-button aria-label="Validate Enrollments" onclick={runValidateEnrollments} label="Get Enrollments"></lightning-button>
             </lightning-button-group>
         </template>
         <template lwc:else>
