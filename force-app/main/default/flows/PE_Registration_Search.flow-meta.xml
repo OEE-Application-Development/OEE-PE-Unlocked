@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Lookup_Noncredit_Term_Record_Type</name>
         <label>Lookup Noncredit Term Record Type</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>134</locationY>
         <actionName>PERecordTypeRequestor</actionName>
         <actionType>apex</actionType>
@@ -23,6 +23,28 @@
         </outputParameters>
     </actionCalls>
     <apiVersion>62.0</apiVersion>
+    <decisions>
+        <name>Was_Registration_Selected</name>
+        <label>Was Registration Selected?</label>
+        <locationX>182</locationX>
+        <locationY>458</locationY>
+        <defaultConnectorLabel>No Registration</defaultConnectorLabel>
+        <rules>
+            <name>Registration_Selected</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Registration</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Import_Registration</targetReference>
+            </connector>
+            <label>Registration Selected</label>
+        </rules>
+    </decisions>
     <dynamicChoiceSets>
         <description>Most recent noncredit terms to choose from.</description>
         <name>NoncreditTermOptions</name>
@@ -72,11 +94,37 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordCreates>
+        <name>Import_Registration</name>
+        <label>Import Registration</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <connector>
+            <targetReference>Registration_Import_Success</targetReference>
+        </connector>
+        <inputReference>Registration</inputReference>
+    </recordCreates>
     <runInMode>DefaultMode</runInMode>
+    <screens>
+        <name>Registration_Import_Success</name>
+        <label>Registration Import Success</label>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Post_Reg_Create_Link</name>
+            <fieldText>&lt;p&gt;Click &lt;a href=&quot;/lightning/r/csuoee__Registration__c/{!Registration.Id}/view&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!Registration.Name}&lt;/a&gt; to view imported Registration.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <screens>
         <name>Term_Choice_Screen</name>
         <label>Term Choice Screen</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>242</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -98,7 +146,7 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Lookup_Noncredit_Term_Record_Type</targetReference>
@@ -108,8 +156,11 @@
     <subflows>
         <name>Run_Term_Registration_Lookup</name>
         <label>Run Term Registration Lookup</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>350</locationY>
+        <connector>
+            <targetReference>Was_Registration_Selected</targetReference>
+        </connector>
         <flowName>Search_Opus_Registrations</flowName>
         <inputAssignments>
             <name>Term</name>
