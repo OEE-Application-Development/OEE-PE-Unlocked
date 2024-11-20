@@ -104,7 +104,7 @@
             <targetReference>Lookup_Noncredit_Term_Record_Type</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <subflows>
         <name>Run_Term_Registration_Lookup</name>
         <label>Run Term Registration Lookup</label>
