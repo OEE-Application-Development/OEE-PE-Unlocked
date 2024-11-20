@@ -1,22 +1,29 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import FORM_FACTOR from '@salesforce/client/formFactor';
 
 /* Aura Enabled*/
 import validateRegistration from '@salesforce/apex/RegistrationValidation.validateRegistration';
 import validateLineItems from '@salesforce/apex/RegistrationValidation.validateLineItems';
 import validateEnrollments from '@salesforce/apex/RegistrationValidation.validateEnrollments';
 import getNoncreditCanvasLogin from '@salesforce/apex/CanvasValidation.getNoncreditCanvasLogin';
+import getNoncreditCanvasEnrollments from '@salesforce/apex/CanvasValidation.getNoncreditCanvasEnrollments';
 
 /* Fields */
 import REG_ID from '@salesforce/schema/Registration__c.Registration_Id__c';
 import NONCREDIT_ID from '@salesforce/schema/Registration__c.Online_Account__r.hed__School_Code__c';
 
 import modalAlert from "c/modalAlert";
+import workspaceAPI from "c/workspaceAPI";
 
 const MIDDLEWARE_ERROR = new ShowToastEvent({title: 'Integration Error', message: 'Error getting update from Middleware.', variant: 'error'});
 
 export default class CallRegistrationUpdate extends LightningElement {
+
+    get isSmall() {
+        return (FORM_FACTOR == 'Small');
+    }
 
     @api recordId;
 
@@ -32,9 +39,10 @@ export default class CallRegistrationUpdate extends LightningElement {
             content: 'Checking Opus/SF information. This may take a moment... (ESC to close).'
         });
         
-        validateRegistration({reg: {csuoee__Registration_Id__c: this.recordId}})
+        validateRegistration({reg: {csuoee__Registration_Id__c: getFieldValue(this.registration, REG_ID)}})
             .then((result) => {
                 this.dispatchEvent(new ShowToastEvent({title: 'Registration Validation', message: 'Registration is Valid', variant: 'success'}));
+                workspaceAPI.refreshCurrentTab();
             })
             .error((errorResult) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
@@ -47,7 +55,7 @@ export default class CallRegistrationUpdate extends LightningElement {
             content: 'Checking Opus/SF information. This may take a moment... (ESC to close).'
         });
 
-        validateLineItems({reg: {csuoee__Registration_Id__c: this.recordId}})
+        validateLineItems({reg: {csuoee__Registration_Id__c: getFieldValue(this.registration, REG_ID)}})
             .then((result) => {
                 let c=0,n=0;
                 for(var idx=0;idx<result.length;idx++) {
@@ -59,6 +67,7 @@ export default class CallRegistrationUpdate extends LightningElement {
                     }
                 }
                 this.dispatchEvent(new ShowToastEvent({title: 'Registration Line Item Validation', message: 'Line Items Confirmed: '+c+', Line Items Not Confirmed: '+n, variant: 'success'}));
+                workspaceAPI.refreshCurrentTab();
             })
             .error((errorResult) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
@@ -71,9 +80,10 @@ export default class CallRegistrationUpdate extends LightningElement {
             content: 'Checking Opus/SF information. This may take a moment... (ESC to close).'
         });
 
-        validateEnrollments({reg: {csuoee__Registration_Id__c: this.recordId}})
+        validateEnrollments({reg: {csuoee__Registration_Id__c: getFieldValue(this.registration, REG_ID)}})
             .then((result) => {
                 this.dispatchEvent(new ShowToastEvent({title: 'Registration Enrollment Validation', message: result.length+' enrollments found for registration.', variant: 'success'}));
+                workspaceAPI.refreshCurrentTab();
             })
             .error((errorResult) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
@@ -105,9 +115,10 @@ export default class CallRegistrationUpdate extends LightningElement {
             content: 'Checking Opus/Canvas/SF information. This may take a moment... (ESC to close).'
         });
 
-        getNoncreditCanvasEnrollments({reg: {csuoee__Registration_Id__c: this.recordId}})
+        getNoncreditCanvasEnrollments({reg: {csuoee__Registration_Id__c: getFieldValue(this.registration, REG_ID)}})
             .then((result) => {
-                
+                this.dispatchEvent(new ShowToastEvent({title: 'Canvas Enrollments', message: result.length+' canvas enrollments found for registration.', variant: 'success'}));
+                workspaceAPI.refreshCurrentTab();               
             })
             .error((errorResult) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);

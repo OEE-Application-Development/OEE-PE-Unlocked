@@ -15,3 +15,7 @@ call sf data export bulk --query-file "bulk/query/NCSections.soql" --output-file
 call sf data export bulk --query-file "bulk/query/NCStudentEnrollments.soql" --output-file "bulk/data/NCStudentEnrollments.csv" -w 10
 call sf data export bulk --query-file "bulk/query/CanvasAccounts.soql" --output-file "bulk/data/CanvasAccounts.csv" -w 10
 call sf data export bulk --query-file "bulk/query/CanvasEnrollments.soql" --output-file "bulk/data/CanvasEnrollments.csv" -w 10
+
+REM Opus Registrations
+call sf data export bulk --query-file "bulk/query/OpusRegistrations.soql" --output-file "bulk/data/OpusRegistrations.csv" -w 10
+call sf data export bulk --query-file "bulk/query/OpusRegistrationLineItems.soql" --output-file "bulk/data/OpusRegistrationLineItems.csv" -w 10
