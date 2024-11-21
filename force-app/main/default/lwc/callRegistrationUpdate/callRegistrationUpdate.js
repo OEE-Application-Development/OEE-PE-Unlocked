@@ -44,7 +44,7 @@ export default class CallRegistrationUpdate extends LightningElement {
                 this.dispatchEvent(new ShowToastEvent({title: 'Registration Validation', message: 'Registration is Valid', variant: 'success'}));
                 workspaceAPI.refreshCurrentTab();
             })
-            .error((errorResult) => {
+            .catch((error) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
             });
     }
@@ -69,7 +69,7 @@ export default class CallRegistrationUpdate extends LightningElement {
                 this.dispatchEvent(new ShowToastEvent({title: 'Registration Line Item Validation', message: 'Line Items Confirmed: '+c+', Line Items Not Confirmed: '+n, variant: 'success'}));
                 workspaceAPI.refreshCurrentTab();
             })
-            .error((errorResult) => {
+            .catch((error) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
             });
     }
@@ -85,7 +85,7 @@ export default class CallRegistrationUpdate extends LightningElement {
                 this.dispatchEvent(new ShowToastEvent({title: 'Registration Enrollment Validation', message: result.length+' enrollments found for registration.', variant: 'success'}));
                 workspaceAPI.refreshCurrentTab();
             })
-            .error((errorResult) => {
+            .catch((error) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
             });
     }
@@ -104,7 +104,7 @@ export default class CallRegistrationUpdate extends LightningElement {
                     this.dispatchEvent(new ShowToastEvent({title: 'Canvas Login', message: 'Login Found: '+result.lms_hed__Primary_Login__c, variant: 'success'}));
                 }
             })
-            .error((errorResult) => {
+            .catch((error) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
             });
     }
@@ -120,7 +120,7 @@ export default class CallRegistrationUpdate extends LightningElement {
                 this.dispatchEvent(new ShowToastEvent({title: 'Canvas Enrollments', message: result.length+' canvas enrollments found for registration.', variant: 'success'}));
                 workspaceAPI.refreshCurrentTab();               
             })
-            .error((errorResult) => {
+            .catch((error) => {
                 this.dispatchEvent(MIDDLEWARE_ERROR);
             });
     }
