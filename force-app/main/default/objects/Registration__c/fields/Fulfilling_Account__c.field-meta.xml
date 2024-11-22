@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fulfilling_Account__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>The LMS Account used to fulfill this request. It should be the same account as the Canvas enrollments.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The LMS Account used to fulfill this request. It should be the same account as the Canvas enrollments.</inlineHelpText>
+    <label>Fulfilling Account</label>
+    <referenceTo>lms_hed__LMS_Account__c</referenceTo>
+    <relationshipLabel>Fulfilled Registrations</relationshipLabel>
+    <relationshipName>Registrations</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
