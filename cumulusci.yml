@@ -49,3 +49,7 @@ orgs:
             config_file: orgs/dev.json
             days: 7
             namespaced: True
+        beta:
+            config_file: orgs/dev.json
+            days: 1
+            namespaced: True
