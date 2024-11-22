@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Ready_to_PE_Confirm__c</fullName>
+    <description>True if every line item on a registration has a canvas enrollment.</description>
+    <externalId>false</externalId>
+    <formula>Line_Item_Count__c == Line_Item_Canvas_Enroll_Count__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>True if every line item on a registration has a canvas enrollment.</inlineHelpText>
+    <label>Is Ready to PE Confirm</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

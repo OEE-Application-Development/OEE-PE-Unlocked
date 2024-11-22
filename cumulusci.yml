@@ -4,7 +4,7 @@ project:
     package:
         name: OEE-PE-Unlocked
         namespace: csuoee
-        api_version: '57.0'
+        api_version: '61.0'
     dependencies:
         - github: 'https://github.com/OEE-Application-Development/OEE-EDA-Base-Unlocked'
     git:
