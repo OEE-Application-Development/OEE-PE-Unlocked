@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Line_Item_Canvas_Enroll_Count__c</fullName>
+    <description># of line items that have an associated Canvas enrollment.</description>
+    <externalId>false</externalId>
+    <inlineHelpText># of line items that have an associated Canvas enrollment.</inlineHelpText>
+    <label>Line Item Canvas Enroll Count</label>
+    <summaryFilterItems>
+        <field>Registration_Line_Item__c.Canvas_Enrollment__c</field>
+        <operation>notEqual</operation>
+        <value></value>
+    </summaryFilterItems>
+    <summaryForeignKey>Registration_Line_Item__c.Registration__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
