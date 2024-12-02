@@ -11,7 +11,7 @@ REM dev_org and all that good stuff
 start "Org Setup" /wait /b cci flow run dev_org --org dev
 
 REM Load Sample Data
-start "Load Sample Data" /wait /b call bulk/loadAll.bat
+call bulk/loadAll.bat
 
 REM Open the Org & Quit Script
 start "CCI Org Browser" /wait /b cci org browser dev
