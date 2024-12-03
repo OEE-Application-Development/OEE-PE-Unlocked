@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Line_Item_Available_Count__c</fullName>
+    <description>Counts line items that are (Pending / Pending Payment) to trigger a notify. Use this to trigger PE Notification checkbox.</description>
+    <inlineHelpText>Counts line items that are (Pending / Pending Payment) to trigger a notify. Use this to trigger PE Notification checkbox.</inlineHelpText>
+    <label>Line Item Available Count</label>
+    <summaryFilterItems>
+        <field>Registration_Line_Item__c.Status__c</field>
+        <operation>contains</operation>
+        <value>Pending</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Registration_Line_Item__c.Registration__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

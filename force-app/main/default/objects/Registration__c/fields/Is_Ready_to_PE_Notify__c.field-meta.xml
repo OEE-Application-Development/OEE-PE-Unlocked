@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Ready_to_PE_Notify__c</fullName>
+    <description>True if there is at least 1 pending line item.</description>
+    <formula>Line_Item_Available_Count__c &gt; 0</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>True if there is at least 1 pending line item.</inlineHelpText>
+    <label>Is Ready to PE Notify</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
