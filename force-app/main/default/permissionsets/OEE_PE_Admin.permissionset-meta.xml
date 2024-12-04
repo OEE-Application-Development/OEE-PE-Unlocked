@@ -326,6 +326,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Registration__c.Is_Ready_to_PE_Notify__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Registration__c.Line_Item_Available_Count__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Registration__c.Line_Item_Canvas_Enroll_Count__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -869,6 +879,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Registration__c.PE_Registration</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>hed__Course_Enrollment__c.Faculty</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -884,6 +898,10 @@
         <recordType>hed__Term__c.Noncredit</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <tabSettings>
+        <tab>Registration__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
     <tabSettings>
         <tab>hed__Course_Enrollment__c</tab>
         <visibility>Visible</visibility>
