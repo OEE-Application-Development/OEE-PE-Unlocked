@@ -54,4 +54,13 @@ global with sharing class PEHelpers {
         return noncreditInstructorEnrollmentRecordType;
     }
 
+    global static RecordType noncreditAccountRecordType = null;
+    global static RecordType getNoncreditAccountRecordType() {
+        if(noncreditAccountRecordType == null) {
+            noncreditAccountRecordType = [select Id from RecordType where SobjectType = 'Account' and DeveloperName = 'PE_Account' LIMIT 1];
+        }
+
+        return noncreditAccountRecordType;
+    }
+
 }
