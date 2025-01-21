@@ -104,7 +104,7 @@ private class PEEvent_TEST {
 
         System.assert(PEHelpers.getNoncreditTermType() != null);
         System.assert(PEHelpers.getNoncreditDeptRecordType() != null);
-        System.assert(PEHelpers.getNoncreditInstitutionType() != null);
+        //System.assert(PEHelpers.getNoncreditInstitutionType() != null); This is a non-packaged RecordType
         System.assert(PEHelpers.getNoncreditStudentEnrollmentRecordType() != null);
         System.assert(PEHelpers.getNoncreditPendingStudentEnrollmentRecordType() != null);
         System.assert(PEHelpers.getNoncreditInstructorEnrollmentRecordType() != null);
