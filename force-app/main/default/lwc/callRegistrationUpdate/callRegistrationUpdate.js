@@ -7,7 +7,7 @@ import FORM_FACTOR from '@salesforce/client/formFactor';
 import validateRegistration from '@salesforce/apex/RegistrationValidation.validateRegistration';
 import validateLineItems from '@salesforce/apex/RegistrationValidation.validateLineItems';
 import validateEnrollments from '@salesforce/apex/RegistrationValidation.validateEnrollments';
-import getNoncreditCanvasLogin from '@salesforce/apex/CanvasValidation.getNoncreditCanvasLogin';
+import syncOpusLmsLoginId from '@salesforce/apex/CanvasValidation.syncOpusLmsLoginId';
 import getNoncreditCanvasEnrollments from '@salesforce/apex/CanvasValidation.getNoncreditCanvasEnrollments';
 
 /* Fields */
@@ -96,7 +96,7 @@ export default class CallRegistrationUpdate extends LightningElement {
             content: 'Checking Opus/Canvas/SF information. This may take a moment... (ESC to close).'
         });
 
-        getNoncreditCanvasLogin({account: {'hed__School_Code__c': getFieldValue(this.registration, NONCREDIT_ID)}})
+        syncOpusLmsLoginId({account: {'hed__School_Code__c': getFieldValue(this.registration, NONCREDIT_ID)}})
             .then((result) => {
                 if(result == null) {
                     this.dispatchEvent(new ShowToastEvent({title: 'Canvas Login', message: 'No Login Found.', variant: 'success'}));
