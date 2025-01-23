@@ -69,8 +69,12 @@ global class PE_MiddlewareIntegration_TEST {
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, BaseTestUtil.getBasicMiddlewareMock(''));
 
-        lms_hed__LMS_Account__c result = CanvasValidation.syncOpusLmsLoginId(new Account(hed__School_Code__c = 'learn.colostate.edu.1'));
-        System.assert(result != null);
+        try {
+            lms_hed__LMS_Account__c result = CanvasValidation.syncOpusLmsLoginId(new Account(hed__School_Code__c = 'learn.colostate.edu.1'));
+            System.assert(false, 'This should have errored.');
+        } catch(AuraException ae) {
+
+        }
 
         Test.stopTest();
     }
