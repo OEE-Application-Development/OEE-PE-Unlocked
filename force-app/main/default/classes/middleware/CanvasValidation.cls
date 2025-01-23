@@ -41,7 +41,7 @@ global with sharing class CanvasValidation {
         try {
             return (lms_hed__LMS_Account__c)JSON.deserialize(response.getBody(), SObject.class);
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            throw new AuraException(e.getMessage());
         }
     }
 
