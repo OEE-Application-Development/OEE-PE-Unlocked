@@ -30,4 +30,19 @@ global with sharing class CanvasValidation {
         }
     }
 
+    /**
+     * /salesforce/action/canvas/{studentId}/opus/sync
+     */
+    @AuraEnabled
+    public static lms_hed__LMS_Account__c syncOpusLmsLoginId(Account account) {
+        String path = '/salesforce/action/canvas/'+account.hed__School_Code__c+'/opus/sync';
+        HttpResponse response = MiddlewareIntegration.sendMiddlewareRequest('POST', path);
+        if(response.getStatusCode() != 200) return null;
+        try {
+            return (lms_hed__LMS_Account__c)JSON.deserialize(response.getBody(), SObject.class);
+        } catch (Exception e) {
+            throw new AuraException(e.getMessage());
+        }
+    }
+
 }
