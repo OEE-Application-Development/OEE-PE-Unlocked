@@ -41,6 +41,8 @@ tasks:
                   default: true
                 - record_type: hed__Course_Enrollment__c.Student
                   default: true
+                - record_type: csuoee__Registration__c
+                  default: true
 
 
 orgs:
