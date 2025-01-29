@@ -49,7 +49,7 @@ export default class ManageCanvasAccount extends LightningElement {
                 workspaceAPI.refreshCurrentTab();
             })
             .catch((error) => {
-
+                this.dispatchEvent(new ShowToastEvent({title: 'Opus <-> Canvas Sync', message: error.body.message, variant: 'error'}));
             });
     }
 
@@ -61,12 +61,12 @@ export default class ManageCanvasAccount extends LightningElement {
             lms_hed__Alternate_Login__c: getFieldValue(this.lmsAccount, ALT_LOGIN_ID)
         }})
             .then((result) => {
-                this.dispatchEvent(new ShowToastEvent({title: 'Password reset: '+result, message: 'Password Reset', variant: 'success'}));
+                this.dispatchEvent(new ShowToastEvent({title: 'Password Reset', message: 'Password reset: '+result, variant: 'success'}));
                 this.passwordReset = true;
                 this.newPassword = result;
             })
             .catch((error) => {
-
+                this.dispatchEvent(new ShowToastEvent({title: 'Password Reset', message: error.body.message, variant: 'error'}));
             });
     }
 
