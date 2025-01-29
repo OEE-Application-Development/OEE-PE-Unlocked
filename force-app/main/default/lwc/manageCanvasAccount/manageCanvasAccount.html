@@ -1,3 +1,9 @@
 <template>
-    
+    <lightning-card title="Canvas Actions">
+        <lightning-button aria-label="Sync Opus LoginId" title="Useful when Login looks like Student######" onclick={runOpusSync} label="Sync Opus LoginId"></lightning-button>
+        <lightning-button aria-label="Reset Password" title="If simple password - set to login id, else randomly generate" onclick={runPasswordReset} label="Reset Password"></lightning-button>
+        <template lwc:if={isReset}>
+            <lightning-input type="text" value={newPassword}></lightning-input>
+        </template>
+    </lightning-card>
 </template>
