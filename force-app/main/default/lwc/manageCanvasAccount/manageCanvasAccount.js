@@ -16,7 +16,6 @@ import NONCREDIT_ID from '@salesforce/schema/lms_hed__LMS_Account__c.lms_hed__Ac
 import workspaceAPI from "c/workspaceAPI";
 
 const NO_NONCREDIT_ID = new ShowToastEvent({title: 'Noncredit ID Missing', message: 'No Contact/Noncredit ID on Contact is not set.', variant: 'error'});
-const SYNC_SUCCESS = new ShowToastEvent({title: 'Opus <-> Canvas Sync', message: 'Sync Success', variant: 'success'});
 
 export default class ManageCanvasAccount extends LightningElement {
 
@@ -45,7 +44,8 @@ export default class ManageCanvasAccount extends LightningElement {
         }
         syncOpusLmsLoginId({account: {hed__School_Code__c: noncreditId}})
             .then((result) => {
-                this.dispatchEvent(SYNC_SUCCESS);
+                let messageBody = "Sync Success - "+JSON.stringify(result);
+                this.dispatchEvent(new ShowToastEvent({title: 'Opus <-> Canvas Sync', message: messageBody, variant: 'success'}));
                 workspaceAPI.refreshCurrentTab();
             })
             .catch((error) => {
