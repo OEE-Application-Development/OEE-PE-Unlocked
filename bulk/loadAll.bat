@@ -28,6 +28,7 @@ call sf data import bulk -s lms_hed__LMS_Course_Enrollment__c --file "bulk/data/
 
 REM Opus Registrations
 call sf data import bulk -s csuoee__Registration__c --file "bulk/data/OpusRegistrations.csv" -w 10 --column-delimiter=COMMA
+call sf apex run --file bulk/recordtypes/setPERegistrationType.apex
 call sf data import bulk -s csuoee__Registration_Line_Item__c --file "bulk/data/OpusRegistrationLineItems.csv" -w 10 --column-delimiter=COMMA
 
 REM Re-Enabling TDTM triggers

@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Canvas Actions">
+        <lightning-button class="slds-m-left_x-small" aria-label="Sync Opus LoginId" title="Useful when Login looks like Student######" onclick={runOpusSync} label="Sync Opus LoginId"></lightning-button>
+        <lightning-button aria-label="Reset Password" title="If simple password - set to login id, else randomly generate" onclick={runPasswordReset} label="Reset Password"></lightning-button>
+        <template lwc:if={isReset}>
+            <div class="slds-m-left_x-small">Copy this password if necessary, it will not be displayed again:</div>
+            <div class="slds-m-left_x-small">{newPassword}</div>
+        </template>
+    </lightning-card>
+</template>
