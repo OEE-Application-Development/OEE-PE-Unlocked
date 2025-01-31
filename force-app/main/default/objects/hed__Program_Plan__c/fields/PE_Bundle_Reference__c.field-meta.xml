@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PE_Bundle_Reference__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>Should probably look like Term-BundleCode e.g. 2025SP-AGBB-2020</description>
+    <externalId>true</externalId>
+    <inlineHelpText>Should probably look like Term-BundleCode e.g. 2025SP-AGBB-2020</inlineHelpText>
+    <label>PE Bundle Reference</label>
+    <length>40</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>
